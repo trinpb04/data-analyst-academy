@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icons } from './icons.jsx';
-import { ATLAS } from './data.js';
+import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 /* PathsView — the sequential roadmap as a vertical timeline. */
 function PathsView({ onNavigateToModule }) {

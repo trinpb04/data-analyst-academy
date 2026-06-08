@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icons } from './icons.jsx';
-import { ATLAS } from './data.js';
+import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import LessonContent from './LessonContent.jsx';
 /* LessonsView — module-grouped lesson library, with a reading view. */

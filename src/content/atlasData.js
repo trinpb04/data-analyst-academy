@@ -1,0 +1,71 @@
+export const baseGraph = {
+  modules: [
+    { id: 'business',   label: 'Business & Analysis', color: '#e53e3e', soft: '#fdeaea' },
+    { id: 'excel',      label: 'Excel',               color: '#107c41', soft: '#e4f3eb' },
+    { id: 'statistics', label: 'Statistics',          color: '#805ad5', soft: '#efeafb' },
+    { id: 'sql',        label: 'SQL',                 color: '#0078d7', soft: '#e3f0fb' },
+    { id: 'python',     label: 'Python',              color: '#4b8bbe', soft: '#eaf1f7' },
+    { id: 'powerbi',    label: 'DataViz & Power BI',  color: '#f2c811', soft: '#fdf6dc' },
+  ],
+  clusters: [
+    { module: 'business',   label: 'BUSINESS ACUMEN',   x: 215, y: 120 },
+    { module: 'excel',      label: 'SPREADSHEETS',      x: 540, y: 95  },
+    { module: 'statistics', label: 'STATISTICS',        x: 845, y: 140 },
+    { module: 'sql',        label: 'SQL & DATABASES',   x: 220, y: 470 },
+    { module: 'powerbi',    label: 'DATAVIZ & POWER BI',x: 540, y: 520 },
+    { module: 'python',     label: 'PYTHON FOR DATA',   x: 845, y: 475 },
+  ],
+  nodes: [
+    // Business
+    { id: 'bus-intro',   m: 'business', t: 'What is Data Analytics?', x: 150, y: 70,  v: 9 },
+    { id: 'bus-problem', m: 'business', t: 'Problem Formulation',     x: 270, y: 130, v: 7 },
+    { id: 'bus-kpi',     m: 'business', t: 'Metrics & KPIs',          x: 145, y: 175, v: 7 },
+    { id: 'bus-frame',   m: 'business', t: 'Analytical Frameworks',   x: 290, y: 215, v: 6 },
+    { id: 'bus-story',   m: 'business', t: 'Stakeholder Comms',       x: 120, y: 230, v: 8 },
+    { id: 'bus-cases',   m: 'business', t: 'Case Studies',            x: 280, y: 270, v: 7 },
+    // Excel
+    { id: 'ex-formulas', m: 'excel', t: 'Core Formulas',     x: 470, y: 60,  v: 8 },
+    { id: 'ex-pivot',    m: 'excel', t: 'Pivot Tables',      x: 590, y: 75,  v: 8 },
+    { id: 'ex-pq',       m: 'excel', t: 'Power Query',       x: 520, y: 150, v: 7 },
+    { id: 'ex-pp',       m: 'excel', t: 'Power Pivot & DAX', x: 630, y: 165, v: 6 },
+    { id: 'ex-adv',      m: 'excel', t: 'Advanced Tools',    x: 670, y: 60,  v: 6 },
+    // Statistics
+    { id: 'stat-desc',   m: 'statistics', t: 'Descriptive Stats', x: 800, y: 90,  v: 8 },
+    { id: 'stat-prob',   m: 'statistics', t: 'Probability',       x: 905, y: 120, v: 7 },
+    { id: 'stat-infer',  m: 'statistics', t: 'Inferential Stats', x: 825, y: 185, v: 7 },
+    { id: 'stat-abtest', m: 'statistics', t: 'A/B Testing',       x: 930, y: 205, v: 6 },
+    { id: 'stat-dist',   m: 'statistics', t: 'Distributions',     x: 870, y: 70,  v: 7 },
+    // SQL
+    { id: 'sql-intro',   m: 'sql', t: 'RDBMS Basics',  x: 150, y: 430, v: 7 },
+    { id: 'sql-query',   m: 'sql', t: 'Basic Queries', x: 265, y: 440, v: 9 },
+    { id: 'sql-joins',   m: 'sql', t: 'JOINs',         x: 175, y: 510, v: 9 },
+    { id: 'sql-window',  m: 'sql', t: 'Window Functions', x: 300, y: 525, v: 7 },
+    { id: 'sql-etl',     m: 'sql', t: 'ETL & Warehousing', x: 205, y: 575, v: 6 },
+    { id: 'sql-opt',     m: 'sql', t: 'Query Optimization',x: 320, y: 585, v: 8 },
+    // Power BI
+    { id: 'pbi-prep',    m: 'powerbi', t: 'Data Prep',     x: 475, y: 480, v: 7 },
+    { id: 'pbi-model',   m: 'powerbi', t: 'Star Schema',   x: 590, y: 490, v: 8 },
+    { id: 'pbi-dax',     m: 'powerbi', t: 'DAX Measures',  x: 520, y: 560, v: 7 },
+    { id: 'pbi-viz',     m: 'powerbi', t: 'Dashboards',    x: 615, y: 565, v: 7 },
+    { id: 'pbi-dax-adv', m: 'powerbi', t: 'Advanced DAX',  x: 450, y: 600, v: 8 },
+    { id: 'pbi-serv',    m: 'powerbi', t: 'PBI Service',   x: 670, y: 610, v: 6 },
+    // Python
+    { id: 'py-pandas',  m: 'python', t: 'Pandas',          x: 800, y: 430, v: 9 },
+    { id: 'py-eda',     m: 'python', t: 'EDA',             x: 910, y: 455, v: 7 },
+    { id: 'py-viz',     m: 'python', t: 'Matplotlib',      x: 830, y: 520, v: 6 },
+    { id: 'py-ml',      m: 'python', t: 'Intro to ML',     x: 925, y: 540, v: 7 },
+    { id: 'py-scrape',  m: 'python', t: 'Web Scraping',    x: 740, y: 390, v: 6 },
+    { id: 'py-stats',   m: 'python', t: 'Stat Analysis',   x: 980, y: 490, v: 7 },
+  ],
+  links: [
+    ['bus-intro','bus-problem'],['bus-problem','bus-kpi'],['bus-kpi','bus-frame'],['bus-intro','bus-kpi'],['bus-frame','bus-cases'],['bus-problem','bus-story'],
+    ['ex-formulas','ex-pivot'],['ex-pivot','ex-pq'],['ex-pq','ex-pp'],['ex-formulas','ex-pq'],['ex-formulas','ex-adv'],['ex-pivot','ex-adv'],
+    ['stat-desc','stat-prob'],['stat-prob','stat-dist'],['stat-dist','stat-infer'],['stat-prob','stat-infer'],['stat-infer','stat-abtest'],
+    ['sql-intro','sql-query'],['sql-query','sql-joins'],['sql-joins','sql-window'],['sql-window','sql-etl'],['sql-joins','sql-opt'],['sql-window','sql-opt'],
+    ['pbi-prep','pbi-model'],['pbi-model','pbi-dax'],['pbi-dax','pbi-viz'],['pbi-model','pbi-viz'],['pbi-dax','pbi-dax-adv'],['pbi-viz','pbi-serv'],
+    ['py-pandas','py-eda'],['py-eda','py-viz'],['py-eda','py-ml'],['py-pandas','py-scrape'],['py-eda','py-stats'],
+    ['bus-kpi','stat-desc'],['bus-problem','sql-intro'],['ex-formulas','sql-query'],
+    ['ex-pq','pbi-prep'],['ex-pp','pbi-model'],['sql-query','py-pandas'],['sql-etl','pbi-prep'],
+    ['stat-desc','py-eda'],['stat-infer','py-ml'],['py-eda','pbi-viz'],
+  ]
+};

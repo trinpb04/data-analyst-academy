@@ -1,7 +1,7 @@
 import React, { useRef, useState, useMemo, useEffect, useCallback } from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import { Icons } from './icons.jsx';
-import { ATLAS } from './data.js';
+import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import LessonContent from './LessonContent.jsx';
 
