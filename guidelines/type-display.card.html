@@ -1,0 +1,26 @@
+<!-- @dsCard group="Type" viewport="700x210" name="Display & Headings" subtitle="Inter — view headings down to card titles" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-card); }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .line { display: flex; align-items: baseline; gap: 16px; }
+  .spec { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); width: 132px; flex-shrink: 0; }
+  .d  { font: var(--type-display); color: var(--text-strong); }
+  .h2 { font: var(--type-h2); color: var(--text-strong); }
+  .h3 { font: var(--type-h3); color: var(--text-strong); }
+  .t  { font: var(--type-title); color: var(--text-strong); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="line"><span class="spec">display · 800 · 30</span><span class="d">The Data Analyst Roadmap</span></div>
+    <div class="line"><span class="spec">h2 · 700 · 24</span><span class="h2">Lessons &amp; Materials</span></div>
+    <div class="line"><span class="spec">h3 · 700 · 20</span><span class="h3">SQL &amp; Databases</span></div>
+    <div class="line"><span class="spec">title · 600 · 18</span><span class="t">Window Functions</span></div>
+  </div>
+</body>
+</html>

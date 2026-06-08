@@ -1,0 +1,76 @@
+<!-- @dsCard group="Encyclopedia" viewport="1280x720" name="Encyclopedia App" subtitle="The full product — Atlas · Paths · Lessons · Revise" -->
+<!-- @startingPoint section="Encyclopedia" subtitle="Full learning app — knowledge graph, roadmap, lessons" viewport="1280x720" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analyst Encyclopedia</title>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" href="../../assets/logo-mark-light.png">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; }
+  #root { height: 100vh; }
+  /* Match the product: legend is hidden on narrower viewports so it never crowds the tabs. */
+  @media (max-width: 1100px) { .daa-legend { display: none !important; } }
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" rx="20" fill="#0e7c6f"/>
+    <circle cx="32" cy="36" r="7" fill="#fdf6e3"/>
+    <circle cx="64" cy="28" r="6" fill="#f2c811"/>
+    <circle cx="70" cy="60" r="7" fill="#fdf6e3"/>
+    <circle cx="38" cy="66" r="6" fill="#e53e3e"/>
+    <line x1="32" y1="36" x2="64" y2="28" stroke="#fdf6e3" stroke-width="2.5" opacity="0.6"/>
+    <line x1="32" y1="36" x2="38" y2="66" stroke="#fdf6e3" stroke-width="2.5" opacity="0.6"/>
+    <line x1="64" y1="28" x2="70" y2="60" stroke="#fdf6e3" stroke-width="2.5" opacity="0.6"/>
+    <line x1="38" y1="66" x2="70" y2="60" stroke="#fdf6e3" stroke-width="2.5" opacity="0.6"/>
+  </svg>
+</template>
+<div id="root"></div>
+<script src="data.js"></script>
+<script type="text/babel" src="icons.jsx"></script>
+<script type="text/babel" src="LessonContent.jsx"></script>
+<script type="text/babel" src="AppHeader.jsx"></script>
+<script type="text/babel" src="AtlasView.jsx"></script>
+<script type="text/babel" src="PathsView.jsx"></script>
+<script type="text/babel" src="LessonsView.jsx"></script>
+<script type="text/babel" src="ReviseView.jsx"></script>
+<script type="text/babel">
+  function App() {
+    const [tab, setTab] = React.useState('atlas');
+    const [theme, setTheme] = React.useState(() => localStorage.getItem('daa-theme') || 'light');
+    React.useEffect(() => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('daa-theme', theme);
+    }, [theme]);
+    const toggleTheme = () => setTheme(t => (t === 'dark' ? 'light' : 'dark'));
+    const View = { atlas: window.AtlasView, paths: window.PathsView, lessons: window.LessonsView, revise: window.ReviseView }[tab];
+    return (
+      <div style={{ height: '100vh', width: '100%', display: 'flex', flexDirection: 'column',
+        background: 'var(--surface-page)', overflow: 'hidden' }}>
+        <window.AppHeader tab={tab} onTab={setTab} theme={theme} onToggleTheme={toggleTheme}/>
+        <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+          <View/>
+        </div>
+      </div>
+    );
+  }
+  // Wait for all babel-compiled view modules to register on window.
+  function mount() {
+    if (window.AppHeader && window.AtlasView && window.PathsView && window.LessonsView && window.ReviseView) {
+      ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+    } else {
+      setTimeout(mount, 30);
+    }
+  }
+  mount();
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x140" name="Navigation" subtitle="The Atlas · Paths · Lessons · Revise segmented control" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px 24px; background: var(--surface-card); display: flex; justify-content: center; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { SegmentedTabs } = window.DataAnalystAcademyDesignSystem_f0f875;
+  const S = (d) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{d}</svg>;
+  const Map = () => S(<><path d="m9 4 6 2 5-2v14l-5 2-6-2-5 2V6z"/><path d="M9 4v14M15 6v14"/></>);
+  const Route = () => S(<><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H14a3.5 3.5 0 0 0 0-7H10a3.5 3.5 0 0 1 0-7h5.5"/></>);
+  const List = () => S(<><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></>);
+  const Refresh = () => S(<><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5"/></>);
+  function Demo() {
+    const [tab, setTab] = React.useState('atlas');
+    return (
+      <SegmentedTabs value={tab} onChange={setTab} items={[
+        { id: 'atlas', label: 'Atlas', icon: <Map/> },
+        { id: 'paths', label: 'Paths', icon: <Route/> },
+        { id: 'lessons', label: 'Lessons', icon: <List/> },
+        { id: 'revise', label: 'Revise', icon: <Refresh/> },
+      ]}/>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

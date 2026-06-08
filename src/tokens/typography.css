@@ -1,0 +1,53 @@
+/* ============================================================
+   Data Analyst Academy — Typography Tokens
+   Inter for everything in the UI; JetBrains Mono for code,
+   SQL, formulas and tabular figures. Type is utilitarian and
+   dense — this is a reference tool, not a marketing site.
+   ============================================================ */
+
+:root {
+  /* ---- Families ------------------------------------------- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace;
+
+  /* ---- Weights -------------------------------------------- */
+  --fw-regular:  400; /* @kind other */
+  --fw-medium:   500; /* @kind other */
+  --fw-semibold: 600; /* @kind other */
+  --fw-bold:     700; /* @kind other */
+  --fw-extra:    800; /* @kind other */
+
+  /* ---- Type scale (px @ 16 root) -------------------------- */
+  --text-2xs: 10px;   /* eyebrow on the mark, micro-labels   */
+  --text-xs:  12px;   /* legend, meta, chips                 */
+  --text-sm:  14px;   /* UI default — nav, buttons, body sm  */
+  --text-base:16px;   /* prose body                          */
+  --text-lg:  18px;   /* lead paragraph, card title          */
+  --text-xl:  20px;   /* section subhead                     */
+  --text-2xl: 24px;   /* view heading (Lessons, Revise)      */
+  --text-3xl: 30px;   /* page hero heading                   */
+  --text-4xl: 36px;
+  --text-5xl: 48px;
+
+  /* ---- Line heights --------------------------------------- */
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;   /* lesson prose */
+
+  /* ---- Letter spacing ------------------------------------- */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;   /* the "DATA ANALYST" lockup   */
+  --tracking-widest: 0.18em;   /* "ENCYCLOPEDIA" eyebrow      */
+
+  /* ---- Semantic roles ------------------------------------- */
+  --type-display:  var(--fw-extra)    var(--text-3xl)/var(--leading-tight) var(--font-sans);
+  --type-h2:       var(--fw-bold)     var(--text-2xl)/var(--leading-snug)  var(--font-sans);
+  --type-h3:       var(--fw-bold)     var(--text-xl)/var(--leading-snug)   var(--font-sans);
+  --type-title:    var(--fw-semibold) var(--text-lg)/var(--leading-snug)   var(--font-sans);
+  --type-body:     var(--fw-regular)  var(--text-base)/var(--leading-relaxed) var(--font-sans);
+  --type-ui:       var(--fw-medium)   var(--text-sm)/var(--leading-normal) var(--font-sans);
+  --type-meta:     var(--fw-medium)   var(--text-xs)/var(--leading-normal) var(--font-sans);
+  --type-code:     var(--fw-regular)  var(--text-sm)/var(--leading-normal) var(--font-mono);
+}

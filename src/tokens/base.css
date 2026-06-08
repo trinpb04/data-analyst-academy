@@ -1,0 +1,71 @@
+/* ============================================================
+   Data Analyst Academy — Base element defaults
+   Minimal resets + sensible product defaults. Opt-in helpers
+   live as .daa-* classes so they never collide with consumers.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-strong);
+  font-weight: var(--fw-bold);
+  line-height: var(--leading-snug);
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--text-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, pre, kbd, samp { font-family: var(--font-mono); }
+
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+::selection { background: var(--teal-200); color: var(--slate-950); }
+
+/* ---- The brand lockup (logo mark + wordmark) -------------- */
+.daa-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.daa-lockup__name {
+  font-weight: var(--fw-bold);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-strong);
+  line-height: 1.1;
+}
+.daa-lockup__eyebrow {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.1;
+}
+
+/* ---- Module color helper --------------------------------- */
+.daa-mod-business   { --mod: var(--mod-business);   --mod-soft: var(--mod-business-soft); }
+.daa-mod-excel      { --mod: var(--mod-excel);      --mod-soft: var(--mod-excel-soft); }
+.daa-mod-statistics { --mod: var(--mod-statistics); --mod-soft: var(--mod-statistics-soft); }
+.daa-mod-sql        { --mod: var(--mod-sql);        --mod-soft: var(--mod-sql-soft); }
+.daa-mod-python     { --mod: var(--mod-python);     --mod-soft: var(--mod-python-soft); }
+.daa-mod-powerbi    { --mod: var(--mod-powerbi);    --mod-soft: var(--mod-powerbi-soft); }

@@ -1,0 +1,21 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="Logo Mark" subtitle="The T.i mark — on light and on ink" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; }
+  .pane { height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+  .light { background: var(--surface-card); }
+  .dark { background: var(--slate-950); }
+  img { width: 96px; height: 96px; }
+  .lbl { font: var(--type-meta); color: var(--text-muted); }
+  .dark .lbl { color: var(--slate-400); }
+</style>
+</head>
+<body>
+  <div class="pane light"><img src="../assets/logo-mark-light.png" alt="Data Analyst Academy mark"><span class="lbl">on light · logo-mark-light.png</span></div>
+  <div class="pane dark"><img src="../assets/logo-mark-dark.png" alt="Data Analyst Academy mark"><span class="lbl">on ink · logo-mark-dark.png</span></div>
+</body>
+</html>

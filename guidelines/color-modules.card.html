@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Module Palette" subtitle="Six categorical colors that drive the Atlas, Paths & legend" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-card); }
+  .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .mod { display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center; }
+  .dot { width: 44px; height: 44px; border-radius: var(--radius-full); box-shadow: var(--shadow-glow); }
+  .name { font: var(--type-meta); color: var(--text-strong); }
+  .hex { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); }
+  .cap { margin-top: 16px; font: var(--type-meta); color: var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="mod"><div class="dot" style="background:var(--mod-business);--glow:var(--mod-business)"></div><span class="name">Business</span><span class="hex">#E53E3E</span></div>
+    <div class="mod"><div class="dot" style="background:var(--mod-excel);--glow:var(--mod-excel)"></div><span class="name">Excel</span><span class="hex">#107C41</span></div>
+    <div class="mod"><div class="dot" style="background:var(--mod-statistics);--glow:var(--mod-statistics)"></div><span class="name">Statistics</span><span class="hex">#805AD5</span></div>
+    <div class="mod"><div class="dot" style="background:var(--mod-sql);--glow:var(--mod-sql)"></div><span class="name">SQL</span><span class="hex">#0078D7</span></div>
+    <div class="mod"><div class="dot" style="background:var(--mod-python);--glow:var(--mod-python)"></div><span class="name">Python</span><span class="hex">#4B8BBE</span></div>
+    <div class="mod"><div class="dot" style="background:var(--mod-powerbi);--glow:var(--mod-powerbi)"></div><span class="name">Power BI</span><span class="hex">#F2C811</span></div>
+  </div>
+  <div class="cap">Glow on dark = node treatment in the knowledge graph. Each has a <code style="font-family:var(--font-mono)">--mod-*-soft</code> tint for chips.</div>
+</body>
+</html>

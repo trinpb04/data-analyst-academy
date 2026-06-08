@@ -1,0 +1,43 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Light / Dark Themes" subtitle="Solarized Light (default) & Solarized Dark — toggle via [data-theme]" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--slate-100); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pane { border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--surface-page); padding: 16px; box-shadow: var(--shadow-sm); }
+  .label { font: var(--type-meta); color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); margin-bottom: 12px; }
+  .card { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px; }
+  .h { font: var(--fw-bold) 15px/1.2 var(--font-sans); color: var(--text-strong); }
+  .b { font: 12px/1.5 var(--font-sans); color: var(--text-body); margin-top: 4px; }
+  .row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+  .btn { font: var(--fw-semibold) 12px/1 var(--font-sans); color: var(--text-onbrand); background: var(--brand); padding: 7px 12px; border-radius: var(--radius-md); }
+  .sws { display: flex; gap: 5px; margin-top: 12px; }
+  .sw { width: 22px; height: 22px; border-radius: 5px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="pane" data-theme="light">
+      <div class="label">☀ Solarized Light</div>
+      <div class="card">
+        <div class="h">JOINs</div>
+        <div class="b">base3 #FDF6E3 surface · base01 text</div>
+        <div class="row"><span class="btn">Đã học</span><span style="font:12px var(--font-mono);color:var(--text-link)">Read →</span></div>
+      </div>
+      <div class="sws"><span class="sw" style="background:var(--sol-base3)"></span><span class="sw" style="background:var(--sol-base2)"></span><span class="sw" style="background:var(--brand)"></span><span class="sw" style="background:var(--mod-sql)"></span><span class="sw" style="background:var(--mod-business)"></span></div>
+    </div>
+    <div class="pane" data-theme="dark">
+      <div class="label">☾ Solarized Dark</div>
+      <div class="card">
+        <div class="h">JOINs</div>
+        <div class="b">base03 #002B36 surface · base2 text</div>
+        <div class="row"><span class="btn">Đã học</span><span style="font:12px var(--font-mono);color:var(--text-link)">Read →</span></div>
+      </div>
+      <div class="sws"><span class="sw" style="background:var(--sol-base03)"></span><span class="sw" style="background:var(--sol-base02)"></span><span class="sw" style="background:var(--brand)"></span><span class="sw" style="background:var(--mod-sql)"></span><span class="sw" style="background:var(--mod-business)"></span></div>
+    </div>
+  </div>
+</body>
+</html>

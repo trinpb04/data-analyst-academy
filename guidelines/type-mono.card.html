@@ -1,0 +1,22 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Mono & Code" subtitle="JetBrains Mono — SQL, formulas, tabular data" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-card); }
+  pre { margin: 0; background: var(--slate-950); color: #e2e8f0; padding: 16px 18px; border-radius: var(--radius-lg); font: var(--type-code); font-size: 13px; overflow: auto; }
+  .k { color: #5fd3ba; }
+  .f { color: #94a3b8; }
+  .s { color: #f2c811; }
+</style>
+</head>
+<body>
+  <pre><span class="k">SELECT</span> department, salary,
+       <span class="f">RANK</span>() <span class="k">OVER</span>(<span class="k">PARTITION BY</span> department
+                  <span class="k">ORDER BY</span> salary <span class="k">DESC</span>) <span class="k">AS</span> rank
+<span class="k">FROM</span> employees
+<span class="k">WHERE</span> active = <span class="s">TRUE</span>;</pre>
+</body>
+</html>

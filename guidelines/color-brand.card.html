@@ -1,0 +1,34 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Brand Teal" subtitle="The signature accent — the logo's i-dot" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-card); }
+  .row { display: flex; gap: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .sw { flex: 1; height: 84px; display: flex; flex-direction: column; justify-content: flex-end; padding: 8px; }
+  .sw span { font: var(--type-meta); font-size: 11px; }
+  .sw .hex { font-family: var(--font-mono); font-size: 10px; opacity: 0.85; }
+  .lo { color: var(--slate-900); }
+  .hi { color: #fff; }
+  .cap { margin-top: 12px; font: var(--type-meta); color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .star { color: var(--brand); font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw lo" style="background:var(--teal-50)"><span>50</span><span class="hex">#E8F4F1</span></div>
+    <div class="sw lo" style="background:var(--teal-100)"><span>100</span><span class="hex">#C5E6DF</span></div>
+    <div class="sw lo" style="background:var(--teal-200)"><span>200</span><span class="hex">#8FCCC1</span></div>
+    <div class="sw lo" style="background:var(--teal-300)"><span>300</span><span class="hex">#54AD9F</span></div>
+    <div class="sw hi" style="background:var(--teal-400)"><span>400</span><span class="hex">#1F8E7E</span></div>
+    <div class="sw hi" style="background:var(--teal-500)"><span>500 ★</span><span class="hex">#0E7C6F</span></div>
+    <div class="sw hi" style="background:var(--teal-600)"><span>600</span><span class="hex">#0B665B</span></div>
+    <div class="sw hi" style="background:var(--teal-700)"><span>700</span><span class="hex">#0C5249</span></div>
+    <div class="sw hi" style="background:var(--teal-800)"><span>800</span><span class="hex">#0C423B</span></div>
+    <div class="sw hi" style="background:var(--teal-900)"><span>900</span><span class="hex">#0A352F</span></div>
+  </div>
+  <div class="cap"><span class="star">★</span> <code style="font-family:var(--font-mono)">--brand</code> = teal-500 · deep tech teal · hover 600 · active 700 · soft fills use 50</div>
+</body>
+</html>

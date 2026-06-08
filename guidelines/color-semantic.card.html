@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic Status" subtitle="Success, warning, danger, info — with soft fills" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--surface-card); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .cell { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .solid { height: 48px; display: flex; align-items: center; padding: 0 12px; color: #fff; font: var(--type-meta); }
+  .soft { padding: 8px 12px; font-family: var(--font-mono); font-size: 10px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="cell"><div class="solid" style="background:var(--success)">Success</div><div class="soft" style="background:var(--success-soft);color:var(--success)">#16A34A</div></div>
+    <div class="cell"><div class="solid" style="background:var(--warning)">Warning</div><div class="soft" style="background:var(--warning-soft);color:var(--warning)">#D97706</div></div>
+    <div class="cell"><div class="solid" style="background:var(--danger)">Danger</div><div class="soft" style="background:var(--danger-soft);color:var(--danger)">#E53E3E</div></div>
+    <div class="cell"><div class="solid" style="background:var(--info)">Info</div><div class="soft" style="background:var(--info-soft);color:var(--info)">#0078D7</div></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- @dsCard group="Brand" viewport="700x150" name="Lockup" subtitle="Mark + wordmark + eyebrow, as it appears in the header" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 28px; background: var(--surface-card); display: flex; align-items: center; gap: 40px; }
+  .mark { width: 40px; height: 40px; }
+  .word { display: flex; flex-direction: column; }
+  .name { font-weight: var(--fw-bold); font-size: var(--text-sm); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--text-strong); line-height: 1.15; }
+  .eyebrow { font-size: var(--text-2xs); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--text-muted); line-height: 1.4; }
+  .rule { width: 1px; height: 48px; background: var(--border); }
+  .note { font: var(--type-meta); color: var(--text-muted); max-width: 240px; }
+</style>
+</head>
+<body>
+  <div class="daa-lockup">
+    <img class="mark" src="../assets/logo-mark-light.png" alt="">
+    <div class="word">
+      <span class="name">Data Analyst</span>
+      <span class="eyebrow">Encyclopedia</span>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <p class="note">Mark left, two-line wordmark right. Name in wide-tracked caps; eyebrow in widest-tracked micro caps.</p>
+</body>
+</html>

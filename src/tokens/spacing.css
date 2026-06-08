@@ -1,0 +1,50 @@
+/* ============================================================
+   Data Analyst Academy — Spacing, Radius, Shadow, Motion
+   Built on a 4px grid. shadcn radius base = 0.5rem (8px).
+   Shadows are soft and shallow — cards float barely off page.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing (4px grid) --------------------------------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* Common layout constants pulled from the product */
+  --header-h:   56px;   /* h-14 app header        */
+  --sidebar-w:  450px;  /* Atlas encyclopedia rail */
+  --content-max: 1280px;
+
+  /* ---- Radius (shadcn --radius = 0.5rem) ------------------ */
+  --radius-sm:   4px;
+  --radius-md:   6px;    /* buttons, chips, inputs        */
+  --radius-lg:   8px;    /* default card (rounded-lg)     */
+  --radius-xl:   12px;   /* lesson cards (rounded-xl)     */
+  --radius-2xl:  16px;
+  --radius-full: 9999px; /* pills, avatars, graph nodes   */
+
+  /* ---- Shadows (soft, shallow) ---------------------------- */
+  --shadow-xs: 0 1px 2px rgba(2, 8, 23, 0.05);
+  --shadow-sm: 0 1px 3px rgba(2, 8, 23, 0.08), 0 1px 2px rgba(2, 8, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(2, 8, 23, 0.08), 0 2px 4px rgba(2, 8, 23, 0.04);
+  --shadow-lg: 0 12px 28px rgba(2, 8, 23, 0.12), 0 4px 8px rgba(2, 8, 23, 0.05);
+  --shadow-2xl:0 24px 56px rgba(2, 8, 23, 0.18);
+  /* Atlas node glow — colored, set --glow to a module color  */
+  --shadow-glow: 0 0 10px var(--glow, var(--teal-500));
+
+  /* ---- Motion --------------------------------------------- */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast:   120ms; /* @kind other */
+  --dur-base:   200ms; /* @kind other */
+  --dur-slow:   300ms; /* @kind other */
+}

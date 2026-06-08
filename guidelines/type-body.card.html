@@ -1,0 +1,24 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Body & UI" subtitle="Reading prose and dense interface text" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-card); }
+  .stack { display: flex; flex-direction: column; gap: 16px; max-width: 620px; }
+  .row { display: flex; gap: 16px; }
+  .spec { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); width: 120px; flex-shrink: 0; padding-top: 3px; }
+  .body { font: var(--type-body); color: var(--text-body); }
+  .ui { font: var(--type-ui); color: var(--text-body); }
+  .meta { font: var(--type-meta); color: var(--text-muted); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="row"><span class="spec">body · 400 · 16</span><p class="body">Học theo lộ trình tuần tự sẽ giúp bạn xây dựng nền tảng vững chắc nhất before you ever touch Python.</p></div>
+    <div class="row"><span class="spec">ui · 500 · 14</span><span class="ui">Atlas · Paths · Lessons · Revise</span></div>
+    <div class="row"><span class="spec">meta · 500 · 12</span><span class="meta">Business Acumen</span></div>
+  </div>
+</body>
+</html>
