@@ -1,91 +1,97 @@
+<div align="center">
+
 # 🔭 Data Analyst Academy
 
-![Atlas Light Mode](./public/logo-mark-light.png) <!-- Replace with actual screenshot later if you want -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&pause=1000&color=3B82F6&center=true&vCenter=true&width=600&lines=Interactive+Knowledge+Atlas;SQL,+Python,+and+Power+BI;Master+Data+Analytics" alt="Typing SVG" />
 
-> Một nền tảng học tập bách khoa toàn thư tương tác dành riêng cho ngành **Data Analytics**, được thiết kế với trải nghiệm thị giác đỉnh cao và lộ trình học tập trực quan.
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
+  <img src="https://img.shields.io/badge/Force_Graph-FF6B6B?style=for-the-badge&logo=graphql&logoColor=white" alt="Force Graph" />
+  <img src="https://img.shields.io/badge/Deployment-gh--pages-181717?style=for-the-badge&logo=github&logoColor=white" alt="Deployment" />
+</p>
 
-🔗 **[Trải nghiệm Bản Demo trực tuyến (Sắp ra mắt)](#)**
+**An interactive, encyclopedia-style learning platform dedicated to Data Analytics, designed with a stunning visual aesthetic and an intuitive learning path.**
 
----
+[**🚀 Explore the Live Demo**](https://trinpb04.github.io/data-analyst-academy/)
 
-## ✨ Tính Năng Nổi Bật
-
-### 🌐 Bản Đồ Tri Thức (Knowledge Atlas)
-Thay vì những danh sách bài học nhàm chán, ứng dụng sử dụng mô phỏng vật lý đồ thị (force-directed graph) để trực quan hóa mối liên hệ giữa các nhóm kiến thức:
-- **Kéo, thả, cuộn và phóng to** để tự do khám phá các "hành tinh" kiến thức.
-- Bấm vào bất kỳ node nào để mở ra bách khoa toàn thư chi tiết ở thanh Sidebar.
-
-### 🌓 Ngôn Ngữ Thiết Kế Kép (Dual-Theme Aesthetics)
-Hệ thống đồ họa được thiết kế riêng biệt cho cả hai chế độ sáng/tối, không chỉ đơn thuần là đảo ngược màu sắc:
-- 🌌 **Vũ Trụ (Dark Mode)**: Chìm đắm trong không gian sâu thẳm với những vì sao nhấp nháy, các dải tinh vân rực rỡ và những hành tinh phát sáng tựa như neon.
-- 📜 **Bản Đồ Giấy Nến (Light Mode)**: Sang trọng và thanh lịch với nền giấy kem ấm áp, bóng đổ mềm mại, viền nổi 3D tinh tế và các đường nối cong võng êm ái.
-
-### 📚 Nội Dung Chuyên Sâu
-Tích hợp sẵn các module kiến thức cốt lõi của một Data Analyst thực thụ:
-- **Business Acumen**: Đặt vấn đề, KPIs, Frameworks phân tích.
-- **Excel & Spreadsheets**: Công thức lõi, Pivot Table, Power Query.
-- **Statistics**: Xác suất thống kê, A/B Testing.
-- **SQL & RDBMS**: Truy vấn, JOIN, Window Functions, ETL.
-- **DataViz & PowerBI**: Star Schema, DAX, Storytelling.
-- **Python**: Pandas, EDA, Matplotlib, Machine Learning cơ bản.
+</div>
 
 ---
 
-## 🚀 Cài Đặt & Chạy Cục Bộ (Local Development)
+## ✨ Outstanding Features
 
-Dự án được xây dựng trên **React** + **Vite**.
+### 🌐 Interactive Knowledge Atlas
+Forget boring, flat lists of lessons. The academy utilizes a physics-based **force-directed graph** to visualize the interconnectedness of knowledge domains:
+- **Pan, zoom, drag, and drop** to freely explore the knowledge "planets".
+- Click on any node to reveal a detailed, rich-text encyclopedia entry in the sidebar.
+- Auto-stabilizing clusters group related topics together intuitively.
 
-1. **Clone repository:**
+### 🌓 Dual-Theme Aesthetics
+A bespoke visual system built carefully for both light and dark preferences, offering far more than just inverted colors:
+- 🌌 **Deep Space (Dark Mode)**: Immerse yourself in deep space with twinkling stars, glowing nebulae, and neon-lit planetary nodes.
+- 📜 **Warm Parchment (Light Mode)**: An elegant, solarized aesthetic featuring warm cream backgrounds, soft drop shadows, refined 3D embossing, and smooth connecting paths.
+
+### 📚 Deep-Dive Content Modules
+Pre-loaded with comprehensive, real-world data analytics curriculums curated from industry-leading books:
+- 📈 **Business Acumen**: Problem Formulation (SMART), Frameworks (AARRR, RFM), KPIs (LTV, CAC), Expected Value, Data Storytelling.
+- 📊 **Statistics**: Bayes' Theorem, Central Limit Theorem, Hypothesis Testing, A/B Testing Sample Sizes, Probability Distributions.
+- 💾 **SQL & Databases**: Execution Order, Advanced JOINs, Window Functions (`OVER`, `RANK`, `LAG`), Query Optimization (SARGable), CTEs.
+- 🐍 **Python**: Pandas (DataFrames vs Series), Exploratory Data Analysis (EDA), Matplotlib/Seaborn, Scikit-Learn (Train/Test Leakage), Web Scraping (BeautifulSoup).
+- 🟡 **Power BI & DataViz**: Data Modeling (Star Schema), DAX Measures vs Calculated Columns, Advanced DAX (Context Transition), Power BI Service & RLS.
+- 📗 **Excel & Spreadsheets**: Core Formulas (`INDEX`/`MATCH`, `XLOOKUP`), Pivot Tables, Power Query (Unpivot), What-If Analysis.
+
+---
+
+## 🚀 Local Development
+
+The project is built with **React** and bundled using **Vite**.
+
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/trinpb04/data-analyst-academy.git
    cd data-analyst-academy
    ```
 
-2. **Cài đặt thư viện:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Chạy server phát triển (Development Server):**
+3. **Start the development server:**
    ```bash
    npm run dev
    ```
-   Mở trình duyệt tại `http://localhost:5175/data-analyst-academy/`
+   *Open your browser at `http://localhost:5175/data-analyst-academy/`*
 
 ---
 
-## 🌍 Hướng Dẫn Đưa Lên Mạng (Deploy lên GitHub Pages)
+## 🌍 Deployment (GitHub Pages)
 
-Vì dự án dùng Vite và đã thiết lập sẵn `base: '/data-analyst-academy/'`, việc đưa lên **GitHub Pages** hoàn toàn miễn phí và tự động chỉ trong vài bước:
+Since the project uses Vite and is configured with `base: '/data-analyst-academy/'`, deploying to GitHub Pages is fully automated.
 
-**Cách 1: Dùng thư viện `gh-pages` (Nhanh nhất)**
-1. Cài đặt công cụ gh-pages:
+1. Install `gh-pages` if you haven't already:
    ```bash
    npm install gh-pages --save-dev
    ```
-2. Mở file `package.json`, thêm đoạn script sau vào phần `"scripts"`:
-   ```json
-   "predeploy": "npm run build",
-   "deploy": "gh-pages -d dist"
-   ```
-3. Chạy lệnh deploy:
+2. The `package.json` is already configured with deployment scripts:
    ```bash
    npm run deploy
    ```
-4. Lên GitHub > Settings > Pages > Chọn source là nhánh `gh-pages` > Save. Web của bạn sẽ xuất hiện sau vài phút!
-
-**Cách 2: Dùng GitHub Actions (Tự động hóa hoàn toàn)**
-1. Lên repository GitHub của bạn, tab **Settings** > **Pages**.
-2. Ở mục **Source**, chọn **GitHub Actions**.
-3. GitHub sẽ tự nhận diện đây là dự án Vite/Static HTML và gợi ý cấu hình. Bạn chỉ cần bấm "Configure" và commit file cấu hình đó là xong. Mỗi lần bạn push code lên nhánh `main`, web sẽ tự cập nhật!
+3. Go to your repository on GitHub > **Settings** > **Pages** > Set the source to the `gh-pages` branch. Your interactive academy will be live in minutes!
 
 ---
 
 ## 🛠 Tech Stack
+
 - **Framework**: React 18
 - **Build Tool**: Vite
-- **Styling**: Vanilla CSS + TailwindCSS (cho tiện ích cơ bản) + CSS Variables Design System.
-- **Graph Visualization**: `react-force-graph-2d` + d3-force.
+- **Styling**: Vanilla CSS + CSS Variables Design System
+- **Graph Visualization**: `react-force-graph-2d` + `d3-force`
+- **Typography**: Inter (Google Fonts)
 
 ---
-*Được phát triển với niềm đam mê dành cho dữ liệu và cái đẹp.*
+
+<div align="center">
+  <i>Developed with ❤️ for Data and Beautiful UIs.</i>
+</div>
