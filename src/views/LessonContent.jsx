@@ -2,7 +2,8 @@ import React from 'react';
 /* LessonContent — renders a structured encyclopedia entry. Supports:
    {h, p} heading+prose · {p} prose · {list:[[term,def]]} glossary ·
    {code, lang} code block · {formula, caption} equation card ·
-   {calc, steps:[]} worked calculation · {note} callout/quote. */
+   {calc, steps:[]} worked calculation · {note} callout/quote ·
+   {img, caption} image from PDF with caption. */
 function LessonContent({ entry, accent = 'var(--brand)' }) {
   if (!entry) {
     return (
@@ -53,6 +54,29 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
             </div>
           );
         }
+        if (blk.img) {
+          return (
+            <div key={i} style={{ margin: '4px 0' }}>
+              <img
+                src={blk.img}
+                alt={blk.caption || 'Hình minh họa từ PDF'}
+                style={{
+                  width: '100%', borderRadius: 'var(--radius-lg)',
+                  border: '1px solid var(--border)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
+                  display: 'block',
+                }}
+              />
+              {blk.caption && (
+                <p style={{
+                  font: 'var(--type-meta)', color: 'var(--text-faint)',
+                  textAlign: 'center', marginTop: 6, fontStyle: 'italic',
+                  fontSize: 12,
+                }}>{blk.caption}</p>
+              )}
+            </div>
+          );
+        }
         if (blk.note) {
           return (
             <div key={i} style={{ background: 'var(--brand-soft)', borderLeft: `3px solid ${accent}`,
@@ -67,8 +91,10 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
               {blk.list.map(([term, def], j) => (
                 <li key={j} style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
                   <span style={{ flexShrink: 0, width: 6, height: 6, borderRadius: 9999, background: accent, transform: 'translateY(-2px)' }} />
-                  <span><span style={{ font: 'var(--fw-semibold) 14px/1.5 var(--font-sans)', color: 'var(--text-strong)' }}>{term}</span>
-                  <span style={{ font: 'var(--type-body)', fontSize: 14, color: 'var(--text-body)' }}>{def ? ' — ' + def : ''}</span></span>
+                  <span>
+                    <span style={{ font: 'var(--fw-semibold) 14px/1.5 var(--font-sans)', color: 'var(--text-strong)' }}>{term}</span>
+                    {def ? <span style={{ font: 'var(--type-body)', fontSize: 14, color: 'var(--text-body)' }} dangerouslySetInnerHTML={{ __html: ' — ' + def.replace(/`([^`]+)`/g, '<code style="background:var(--surface-sunken);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-strong)">$1</code>') }} /> : null}
+                  </span>
                 </li>
               ))}
             </ul>

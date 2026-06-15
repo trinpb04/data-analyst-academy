@@ -33,6 +33,7 @@ function AtlasView() {
   const I = Icons;
   const A = ATLAS;
   const [active, setActive] = useState(null);
+  const [hoveredNode, setHoveredNode] = useState(null);
   const fgRef = useRef(null);
   const wrapRef = useRef(null);
   const [size, setSize] = useState({ w: 800, h: 600 });
@@ -44,9 +45,22 @@ function AtlasView() {
   const entry = active ? A.lessons[active.id] : null;
 
   const data = useMemo(() => ({
-    nodes: A.nodes.map(n => ({ id: n.id, title: n.t, moduleId: n.m, val: n.v, color: colorOf(n.m) })),
+    nodes: A.nodes.map(n => ({ id: n.id, title: n.t, moduleId: n.m, val: n.v, color: colorOf(n.m), x: n.x, y: n.y, fx: n.x, fy: n.y })),
     links: A.links.map(([source, target]) => ({ source, target })),
   }), []);
+
+  // Build neighbor set for hover highlight
+  const neighborSet = useMemo(() => {
+    if (!hoveredNode) return null;
+    const set = new Set([hoveredNode.id]);
+    data.links.forEach(l => {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      if (s === hoveredNode.id) set.add(t);
+      if (t === hoveredNode.id) set.add(s);
+    });
+    return set;
+  }, [hoveredNode, data.links]);
 
   // Stars for space mode
   const stars = useMemo(() =>
@@ -139,11 +153,19 @@ function AtlasView() {
   const paintPlanetDark = useCallback((node, ctx, scale) => {
     if (typeof node.x !== 'number' || isNaN(node.x) || typeof node.y !== 'number' || isNaN(node.y)) return;
 
-    const r = (node.val || 4) * 1.4;
+    // Hover dim logic
+    const dimmed = neighborSet && !neighborSet.has(node.id);
+    const isHovered = hoveredNode && hoveredNode.id === node.id;
+    const isNeighbor = neighborSet && neighborSet.has(node.id) && !isHovered;
+    const alpha = dimmed ? 0.12 : 1;
+
+    ctx.globalAlpha = alpha;
+
+    const r = (node.val || 4) * 1.4 * (isHovered ? 1.25 : 1);
     
     // Space mode glow
-    ctx.shadowColor = node.color;
-    ctx.shadowBlur = 18;
+    ctx.shadowColor = isHovered ? '#ffffff' : node.color;
+    ctx.shadowBlur = isHovered ? 30 : (isNeighbor ? 22 : 18);
     
     // Thân hành tinh: gradient từ sáng → màu module
     const g = ctx.createRadialGradient(node.x - r*0.3, node.y - r*0.3, r*0.1, node.x, node.y, r);
@@ -153,58 +175,94 @@ function AtlasView() {
     ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, 2*Math.PI);
     ctx.fillStyle = g; ctx.fill();
     
-    // RESET shadow để không dây sang vành mỏng và text
     ctx.shadowBlur = 0;
+
+    // Highlight ring for hovered or neighbor
+    if (isHovered) {
+      ctx.beginPath(); ctx.arc(node.x, node.y, r + 5/scale, 0, 2*Math.PI);
+      ctx.lineWidth = 2/scale;
+      ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+      ctx.stroke();
+    } else if (isNeighbor) {
+      ctx.beginPath(); ctx.arc(node.x, node.y, r + 3/scale, 0, 2*Math.PI);
+      ctx.lineWidth = 1.5/scale;
+      ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+      ctx.stroke();
+    }
 
     // Vành mỏng hành tinh
     ctx.lineWidth = 1 / scale;
     ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, 2*Math.PI);
     ctx.stroke();
 
     // Nhãn chữ
-    if (scale > 0.5) { // Adjusted visibility
+    if (scale > 0.5) {
       const fs = 11 / scale;
       ctx.font = `500 ${fs}px Inter, sans-serif`;
       ctx.textAlign = 'center'; ctx.textBaseline = 'top';
-      ctx.fillStyle = 'rgba(226,232,240,0.92)';
+      ctx.fillStyle = isHovered ? 'rgba(255,255,255,1)' : 'rgba(226,232,240,0.92)';
       ctx.fillText(node.title, node.x, node.y + r + 3/scale);
     }
-  }, [themeTick]);
+
+    ctx.globalAlpha = 1;
+  }, [themeTick, hoveredNode, neighborSet]);
 
   // LIGHT MODE NODE PAINT ("Star Map on Paper")
   const paintNodeLight = useCallback((node, ctx, scale) => {
     if (typeof node.x !== 'number' || isNaN(node.x) || typeof node.y !== 'number' || isNaN(node.y)) return;
 
-    const r = (node.val || 4) * 1.4; // Keep sizing consistent with dark mode
+    // Hover dim logic
+    const dimmed = neighborSet && !neighborSet.has(node.id);
+    const isHovered = hoveredNode && hoveredNode.id === node.id;
+    const isNeighbor = neighborSet && neighborSet.has(node.id) && !isHovered;
+    const alpha = dimmed ? 0.12 : 1;
+
+    ctx.globalAlpha = alpha;
+
+    const r = (node.val || 4) * 1.4 * (isHovered ? 1.25 : 1);
 
     // BÓNG ĐỔ MỀM ấm (tạo chiều sâu trên giấy)
-    ctx.shadowColor = 'rgba(120,100,60,0.28)';
-    ctx.shadowBlur = 8;
-    ctx.shadowOffsetY = 2.5 / scale;
+    ctx.shadowColor = isHovered ? darken(node.color, 0.3) : 'rgba(120,100,60,0.28)';
+    ctx.shadowBlur = isHovered ? 16 : 8;
+    ctx.shadowOffsetY = isHovered ? 0 : 2.5 / scale;
 
-    // đĩa màu module, gradient rất nhẹ (sáng trên → màu dưới), KHÔNG bóng kính
+    // đĩa màu module, gradient rất nhẹ
     const g = ctx.createLinearGradient(node.x, node.y - r, node.x, node.y + r);
     g.addColorStop(0, lighten(node.color, 0.18));
     g.addColorStop(1, node.color);
     ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, 2*Math.PI);
     ctx.fillStyle = g; ctx.fill();
 
-    // tắt bóng trước khi vẽ chi tiết nhỏ
     ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
 
-    // vành trong đậm hơn (nét, sang)
+    // Highlight ring for hovered node
+    if (isHovered) {
+      ctx.beginPath(); ctx.arc(node.x, node.y, r + 4/scale, 0, 2*Math.PI);
+      ctx.lineWidth = 2/scale;
+      ctx.strokeStyle = darken(node.color, 0.25);
+      ctx.stroke();
+    } else if (isNeighbor) {
+      ctx.beginPath(); ctx.arc(node.x, node.y, r + 2.5/scale, 0, 2*Math.PI);
+      ctx.lineWidth = 1.5/scale;
+      ctx.strokeStyle = darken(node.color, 0.15);
+      ctx.stroke();
+    }
+
+    // vành trong đậm hơn
     ctx.lineWidth = 1.2 / scale;
     ctx.strokeStyle = darken(node.color, 0.18);
+    ctx.beginPath(); ctx.arc(node.x, node.y, r, 0, 2*Math.PI);
     ctx.stroke();
 
-    // highlight mảnh phía trên (gợi ánh sáng, tinh tế)
+    // highlight mảnh phía trên
     ctx.beginPath();
     ctx.arc(node.x, node.y - r*0.28, r*0.55, Math.PI*1.15, Math.PI*1.85);
     ctx.lineWidth = 1 / scale;
     ctx.strokeStyle = 'rgba(255,255,255,0.55)';
     ctx.stroke();
 
-    // NHÃN: mực đậm + viền kem để đọc rõ trên link
+    // NHÃN
     if (scale > 0.5) {
       const fs = 11 / scale;
       ctx.font = `500 ${fs}px Inter, sans-serif`;
@@ -212,13 +270,15 @@ function AtlasView() {
       const ty = node.y + r + 3/scale;
       
       ctx.lineWidth = 3 / scale;
-      ctx.strokeStyle = 'rgba(253,246,227,0.9)';   // halo kem
+      ctx.strokeStyle = 'rgba(253,246,227,0.9)';
       ctx.strokeText(node.title, node.x, ty);
       
-      ctx.fillStyle = 'rgba(60,72,79,0.95)';        // base01
+      ctx.fillStyle = isHovered ? 'rgba(20,40,50,1)' : 'rgba(60,72,79,0.95)';
       ctx.fillText(node.title, node.x, ty);
     }
-  }, [themeTick]);
+
+    ctx.globalAlpha = 1;
+  }, [themeTick, hoveredNode, neighborSet]);
 
   return (
     <div ref={wrapRef} style={{ flex: 1, position: 'relative', overflow: 'hidden', background: isDark ? '#05070f' : '#f4ecd8' }}>
@@ -250,9 +310,25 @@ function AtlasView() {
           ctx.arc(node.x, node.y, ((node.val || 4) * 1.4) + 4, 0, 2 * Math.PI);
           ctx.fill();
         }}
-        linkColor={() => isDark ? 'rgba(160,180,210,0.18)' : 'rgba(120,110,90,0.28)'}
+        linkColor={(link) => {
+          if (!hoveredNode || !neighborSet) {
+            return isDark ? 'rgba(160,180,210,0.18)' : 'rgba(120,110,90,0.28)';
+          }
+          const s = typeof link.source === 'object' ? link.source.id : link.source;
+          const t = typeof link.target === 'object' ? link.target.id : link.target;
+          const isConnected = (s === hoveredNode.id || t === hoveredNode.id);
+          if (isConnected) {
+            return isDark ? 'rgba(200,220,255,0.75)' : 'rgba(80,60,20,0.70)';
+          }
+          return isDark ? 'rgba(160,180,210,0.04)' : 'rgba(120,110,90,0.06)';
+        }}
         linkCurvature={isDark ? 0 : 0.12}
-        linkWidth={1}
+        linkWidth={(link) => {
+          if (!hoveredNode || !neighborSet) return 1;
+          const s = typeof link.source === 'object' ? link.source.id : link.source;
+          const t = typeof link.target === 'object' ? link.target.id : link.target;
+          return (s === hoveredNode.id || t === hoveredNode.id) ? 2.5 : 0.5;
+        }}
         linkDirectionalParticles={isDark ? 2 : 1}
         linkDirectionalParticleSpeed={isDark ? 0.004 : 0.0025}
         linkDirectionalParticleWidth={1.8}
@@ -264,6 +340,7 @@ function AtlasView() {
           }
           setActive(A.nodes.find(n => n.id === node.id));
         }}
+        onNodeHover={(node) => setHoveredNode(node || null)}
         enableNodeDrag={true}
         enableZoomInteraction={true}
         enablePanInteraction={true}

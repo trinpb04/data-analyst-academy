@@ -13,7 +13,7 @@ export const baseGraph = {
     { module: 'statistics', label: 'STATISTICS',        x: 845, y: 140 },
     { module: 'sql',        label: 'SQL & DATABASES',   x: 220, y: 470 },
     { module: 'powerbi',    label: 'DATAVIZ & POWER BI',x: 540, y: 520 },
-    { module: 'python',     label: 'PYTHON FOR DATA',   x: 845, y: 475 },
+    { module: 'python',     label: 'PYTHON FOR DATA',   x: 900, y: 500 },
   ],
   nodes: [
     // Business
@@ -49,23 +49,71 @@ export const baseGraph = {
     { id: 'pbi-viz',     m: 'powerbi', t: 'Dashboards',    x: 615, y: 565, v: 7 },
     { id: 'pbi-dax-adv', m: 'powerbi', t: 'Advanced DAX',  x: 450, y: 600, v: 8 },
     { id: 'pbi-serv',    m: 'powerbi', t: 'PBI Service',   x: 670, y: 610, v: 6 },
-    // Python
-    { id: 'py-pandas',  m: 'python', t: 'Pandas',          x: 800, y: 430, v: 9 },
-    { id: 'py-eda',     m: 'python', t: 'EDA',             x: 910, y: 455, v: 7 },
-    { id: 'py-viz',     m: 'python', t: 'Matplotlib',      x: 830, y: 520, v: 6 },
-    { id: 'py-ml',      m: 'python', t: 'Intro to ML',     x: 925, y: 540, v: 7 },
-    { id: 'py-scrape',  m: 'python', t: 'Web Scraping',    x: 740, y: 390, v: 6 },
-    { id: 'py-stats',   m: 'python', t: 'Stat Analysis',   x: 980, y: 490, v: 7 },
+    // Python — Module 1: Basics
+    { id: 'py-jupyter',  m: 'python', t: 'Jupyter & Setup',      x: 720, y: 340, v: 6 },
+    { id: 'py-basics',   m: 'python', t: 'Python Basics',        x: 810, y: 355, v: 8 },
+    { id: 'py-ds',       m: 'python', t: 'Data Structures',      x: 730, y: 415, v: 8 },
+    // Python — Module 2-3: Programming Fundamentals
+    { id: 'py-control',  m: 'python', t: 'Control Flow',         x: 820, y: 415, v: 7 },
+    { id: 'py-loops',    m: 'python', t: 'Loops',                x: 910, y: 375, v: 7 },
+    { id: 'py-functions',m: 'python', t: 'Functions',            x: 970, y: 415, v: 8 },
+    { id: 'py-oop',      m: 'python', t: 'OOP & Classes',        x: 1050, y: 375, v: 7 },
+    { id: 'py-except',   m: 'python', t: 'Exception Handling',   x: 1080, y: 440, v: 6 },
+    // Python — Module 4: Working with Data
+    { id: 'py-fileio',   m: 'python', t: 'File I/O',             x: 740, y: 490, v: 6 },
+    { id: 'py-numpy',    m: 'python', t: 'NumPy',                x: 855, y: 490, v: 7 },
+    { id: 'py-pandas',   m: 'python', t: 'Pandas',               x: 830, y: 565, v: 9 },
+    // Python — Module 4/5: Advanced
+    { id: 'py-eda',      m: 'python', t: 'EDA',                  x: 950, y: 540, v: 7 },
+    { id: 'py-viz',      m: 'python', t: 'Matplotlib',           x: 870, y: 630, v: 6 },
+    { id: 'py-ml',       m: 'python', t: 'Intro to ML',          x: 1000, y: 600, v: 7 },
+    { id: 'py-scrape',   m: 'python', t: 'Web Scraping',         x: 750, y: 570, v: 6 },
+    { id: 'py-api',      m: 'python', t: 'APIs & REST',          x: 690, y: 520, v: 6 },
+    { id: 'py-stats',    m: 'python', t: 'Stat Analysis',        x: 1070, y: 550, v: 7 },
   ],
   links: [
+    // Business internal
     ['bus-intro','bus-problem'],['bus-problem','bus-kpi'],['bus-kpi','bus-frame'],['bus-intro','bus-kpi'],['bus-frame','bus-cases'],['bus-problem','bus-story'],
+    // Excel internal
     ['ex-formulas','ex-pivot'],['ex-pivot','ex-pq'],['ex-pq','ex-pp'],['ex-formulas','ex-pq'],['ex-formulas','ex-adv'],['ex-pivot','ex-adv'],
+    // Statistics internal
     ['stat-desc','stat-prob'],['stat-prob','stat-dist'],['stat-dist','stat-infer'],['stat-prob','stat-infer'],['stat-infer','stat-abtest'],
+    // SQL internal
     ['sql-intro','sql-query'],['sql-query','sql-joins'],['sql-joins','sql-window'],['sql-window','sql-etl'],['sql-joins','sql-opt'],['sql-window','sql-opt'],
+    // Power BI internal
     ['pbi-prep','pbi-model'],['pbi-model','pbi-dax'],['pbi-dax','pbi-viz'],['pbi-model','pbi-viz'],['pbi-dax','pbi-dax-adv'],['pbi-viz','pbi-serv'],
-    ['py-pandas','py-eda'],['py-eda','py-viz'],['py-eda','py-ml'],['py-pandas','py-scrape'],['py-eda','py-stats'],
+    // Python Module 1 — Basics
+    ['py-jupyter','py-basics'],
+    ['py-basics','py-ds'],
+    ['py-basics','py-control'],
+    // Python Module 2-3 — Programming Fundamentals
+    ['py-ds','py-control'],
+    ['py-control','py-loops'],
+    ['py-loops','py-functions'],
+    ['py-functions','py-oop'],
+    ['py-oop','py-except'],
+    ['py-functions','py-except'],
+    // Python Module 4 — Working with Data
+    ['py-basics','py-fileio'],
+    ['py-fileio','py-pandas'],
+    ['py-numpy','py-pandas'],
+    ['py-ds','py-numpy'],
+    ['py-functions','py-numpy'],
+    // Python Module 4/5 — Advanced
+    ['py-pandas','py-eda'],
+    ['py-eda','py-viz'],
+    ['py-eda','py-ml'],
+    ['py-eda','py-stats'],
+    ['py-api','py-scrape'],
+    ['py-fileio','py-scrape'],
+    ['py-scrape','py-pandas'],
+    // Cross-module links (existing)
     ['bus-kpi','stat-desc'],['bus-problem','sql-intro'],['ex-formulas','sql-query'],
     ['ex-pq','pbi-prep'],['ex-pp','pbi-model'],['sql-query','py-pandas'],['sql-etl','pbi-prep'],
     ['stat-desc','py-eda'],['stat-infer','py-ml'],['py-eda','pbi-viz'],
+    // Cross-module links (new)
+    ['sql-query','py-ds'],
+    ['py-oop','py-ml'],
+    ['py-numpy','py-eda'],
   ]
 };
