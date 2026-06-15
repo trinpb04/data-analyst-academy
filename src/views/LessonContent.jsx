@@ -55,10 +55,11 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
           );
         }
         if (blk.img) {
+          const imgSrc = blk.img.startsWith('/') ? import.meta.env.BASE_URL + blk.img.slice(1) : blk.img;
           return (
             <div key={i} style={{ margin: '4px 0' }}>
               <img
-                src={blk.img}
+                src={imgSrc}
                 alt={blk.caption || 'Hình minh họa từ PDF'}
                 style={{
                   width: '100%', borderRadius: 'var(--radius-lg)',
