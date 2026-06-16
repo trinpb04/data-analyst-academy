@@ -1,0 +1,31 @@
+/* ============================================================
+   Responsive overrides
+   Included last to override base tokens.
+   ============================================================ */
+
+/* Global Anti Horizontal Scroll */
+/* Global Anti Horizontal Scroll */
+@media (max-width: 768px) {
+  :root {
+    --header-h: 52px;
+    --content-max: 100%;
+    --text-3xl: 26px;
+    --text-2xl: 21px;
+    --text-xl: 18px;
+  }
+  html, body {
+    overflow-x: hidden;
+  }
+  .daa-legend {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --text-3xl: 24px;
+    --text-2xl: 20px;
+    --text-xl: 17px;
+  }
+}
+

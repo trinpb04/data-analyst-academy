@@ -4,7 +4,7 @@ import React from 'react';
  * SegmentedTabs — the product's primary view switcher (Atlas · Paths ·
  * Lessons · Revise). A pill track with a white, shadowed active segment.
  */
-export function SegmentedTabs({ items = [], value, onChange = () => {}, style = {}, ...props }) {
+export function SegmentedTabs({ items = [], value, onChange = () => {}, iconOnly = false, style = {}, ...props }) {
   return (
     <div
       role="tablist"
@@ -26,7 +26,7 @@ export function SegmentedTabs({ items = [], value, onChange = () => {}, style = 
             onClick={() => onChange(it.id)}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              height: 32, padding: '0 16px',
+              height: 32, padding: iconOnly ? '0 10px' : '0 16px',
               border: 'none',
               borderRadius: 'var(--radius-md)',
               backgroundColor: active ? 'var(--surface-raised)' : 'transparent',
@@ -39,7 +39,7 @@ export function SegmentedTabs({ items = [], value, onChange = () => {}, style = 
             }}
           >
             {it.icon && <span style={{ width: 16, height: 16, display: 'inline-flex' }}>{it.icon}</span>}
-            {it.label}
+            {!iconOnly && it.label}
           </button>
         );
       })}
