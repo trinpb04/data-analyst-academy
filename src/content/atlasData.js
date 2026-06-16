@@ -23,18 +23,28 @@ export const baseGraph = {
     { id: 'bus-frame',   m: 'business', t: 'Analytical Frameworks',   x: 290, y: 215, v: 6 },
     { id: 'bus-story',   m: 'business', t: 'Stakeholder Comms',       x: 120, y: 230, v: 8 },
     { id: 'bus-cases',   m: 'business', t: 'Case Studies',            x: 280, y: 270, v: 7 },
+    { id: 'bus-northstar', m: 'business', t: 'North Star & Metric Trees', x: 360, y: 175, v: 7 },
+    { id: 'bus-experiment',m: 'business', t: 'Experimentation',          x: 200, y: 310, v: 7 },
+    { id: 'bus-unit',      m: 'business', t: 'Unit Economics',           x: 90,  y: 130, v: 8 },
+    { id: 'bus-forecast',  m: 'business', t: 'Forecasting & Variance',   x: 360, y: 110, v: 7 },
     // Excel
     { id: 'ex-formulas', m: 'excel', t: 'Core Formulas',     x: 470, y: 60,  v: 8 },
     { id: 'ex-pivot',    m: 'excel', t: 'Pivot Tables',      x: 590, y: 75,  v: 8 },
     { id: 'ex-pq',       m: 'excel', t: 'Power Query',       x: 520, y: 150, v: 7 },
     { id: 'ex-pp',       m: 'excel', t: 'Power Pivot & DAX', x: 630, y: 165, v: 6 },
     { id: 'ex-adv',      m: 'excel', t: 'Advanced Tools',    x: 670, y: 60,  v: 6 },
+    { id: 'ex-arrays',   m: 'excel', t: 'Dynamic Arrays',    x: 700, y: 130, v: 7 },
+    { id: 'ex-dashboard',m: 'excel', t: 'Excel Dashboards',  x: 560, y: 30,  v: 6 },
     // Statistics
     { id: 'stat-desc',   m: 'statistics', t: 'Descriptive Stats', x: 800, y: 90,  v: 8 },
     { id: 'stat-prob',   m: 'statistics', t: 'Probability',       x: 905, y: 120, v: 7 },
     { id: 'stat-infer',  m: 'statistics', t: 'Inferential Stats', x: 825, y: 185, v: 7 },
     { id: 'stat-abtest', m: 'statistics', t: 'A/B Testing',       x: 930, y: 205, v: 6 },
     { id: 'stat-dist',   m: 'statistics', t: 'Distributions',     x: 870, y: 70,  v: 7 },
+    { id: 'stat-corr',       m: 'statistics', t: 'Correlation',        x: 800, y: 235, v: 7 },
+    { id: 'stat-regression', m: 'statistics', t: 'Linear Regression',  x: 935, y: 270, v: 8 },
+    { id: 'stat-sampling',   m: 'statistics', t: 'Sampling & Bias',    x: 765, y: 165, v: 6 },
+    { id: 'stat-errors',     m: 'statistics', t: 'Type I/II & Power',  x: 990, y: 175, v: 7 },
     // SQL
     { id: 'sql-intro',   m: 'sql', t: 'RDBMS Basics',  x: 150, y: 430, v: 7 },
     { id: 'sql-query',   m: 'sql', t: 'Basic Queries', x: 265, y: 440, v: 9 },
@@ -42,6 +52,10 @@ export const baseGraph = {
     { id: 'sql-window',  m: 'sql', t: 'Window Functions', x: 300, y: 525, v: 7 },
     { id: 'sql-etl',     m: 'sql', t: 'ETL & Warehousing', x: 205, y: 575, v: 6 },
     { id: 'sql-opt',     m: 'sql', t: 'Query Optimization',x: 320, y: 585, v: 8 },
+    { id: 'sql-aggregate', m: 'sql', t: 'Aggregation & GROUP BY', x: 140, y: 470, v: 8 },
+    { id: 'sql-pivot',     m: 'sql', t: 'Pivot & Unpivot',        x: 380, y: 475, v: 6 },
+    { id: 'sql-date',      m: 'sql', t: 'Date & Cohorts',         x: 385, y: 545, v: 7 },
+    { id: 'sql-quality',   m: 'sql', t: 'NULLs & Data Quality',   x: 110, y: 560, v: 7 },
     // Power BI
     { id: 'pbi-prep',    m: 'powerbi', t: 'Data Prep',     x: 475, y: 480, v: 7 },
     { id: 'pbi-model',   m: 'powerbi', t: 'Star Schema',   x: 590, y: 490, v: 8 },
@@ -49,6 +63,11 @@ export const baseGraph = {
     { id: 'pbi-viz',     m: 'powerbi', t: 'Dashboards',    x: 615, y: 565, v: 7 },
     { id: 'pbi-dax-adv', m: 'powerbi', t: 'Advanced DAX',  x: 450, y: 600, v: 8 },
     { id: 'pbi-serv',    m: 'powerbi', t: 'PBI Service',   x: 670, y: 610, v: 6 },
+    { id: 'pbi-context', m: 'powerbi', t: 'Evaluation Context', x: 545, y: 445, v: 9 },
+    { id: 'pbi-calc',    m: 'powerbi', t: 'CALCULATE Engine',   x: 725, y: 545, v: 8 },
+    { id: 'pbi-time',    m: 'powerbi', t: 'Time Intelligence',  x: 715, y: 490, v: 7 },
+    { id: 'pbi-interact',m: 'powerbi', t: 'Report Interactivity', x: 480, y: 660, v: 6 },
+    { id: 'pbi-perf',    m: 'powerbi', t: 'Performance Tuning', x: 620, y: 655, v: 7 },
     // Python — Module 1: Basics
     { id: 'py-jupyter',  m: 'python', t: 'Jupyter & Setup',      x: 720, y: 340, v: 6 },
     { id: 'py-basics',   m: 'python', t: 'Python Basics',        x: 810, y: 355, v: 8 },
@@ -74,14 +93,24 @@ export const baseGraph = {
   links: [
     // Business internal
     ['bus-intro','bus-problem'],['bus-problem','bus-kpi'],['bus-kpi','bus-frame'],['bus-intro','bus-kpi'],['bus-frame','bus-cases'],['bus-problem','bus-story'],
+    // Business internal (new)
+    ['bus-kpi','bus-northstar'],['bus-northstar','bus-frame'],['bus-frame','bus-experiment'],['bus-cases','bus-experiment'],['bus-kpi','bus-unit'],['bus-intro','bus-unit'],['bus-kpi','bus-forecast'],['bus-forecast','bus-cases'],
     // Excel internal
     ['ex-formulas','ex-pivot'],['ex-pivot','ex-pq'],['ex-pq','ex-pp'],['ex-formulas','ex-pq'],['ex-formulas','ex-adv'],['ex-pivot','ex-adv'],
+    // Excel internal (new)
+    ['ex-formulas','ex-arrays'],['ex-arrays','ex-adv'],['ex-pivot','ex-dashboard'],['ex-dashboard','ex-pp'],
     // Statistics internal
     ['stat-desc','stat-prob'],['stat-prob','stat-dist'],['stat-dist','stat-infer'],['stat-prob','stat-infer'],['stat-infer','stat-abtest'],
+    // Statistics internal (new)
+    ['stat-desc','stat-corr'],['stat-corr','stat-regression'],['stat-desc','stat-sampling'],['stat-sampling','stat-infer'],['stat-infer','stat-errors'],['stat-abtest','stat-errors'],['stat-corr','stat-dist'],
     // SQL internal
     ['sql-intro','sql-query'],['sql-query','sql-joins'],['sql-joins','sql-window'],['sql-window','sql-etl'],['sql-joins','sql-opt'],['sql-window','sql-opt'],
+    // SQL internal (new)
+    ['sql-query','sql-aggregate'],['sql-aggregate','sql-window'],['sql-aggregate','sql-pivot'],['sql-window','sql-date'],['sql-date','sql-etl'],['sql-joins','sql-quality'],['sql-quality','sql-opt'],
     // Power BI internal
     ['pbi-prep','pbi-model'],['pbi-model','pbi-dax'],['pbi-dax','pbi-viz'],['pbi-model','pbi-viz'],['pbi-dax','pbi-dax-adv'],['pbi-viz','pbi-serv'],
+    // Power BI internal (new)
+    ['pbi-dax','pbi-context'],['pbi-context','pbi-calc'],['pbi-context','pbi-dax-adv'],['pbi-calc','pbi-dax-adv'],['pbi-dax','pbi-time'],['pbi-time','pbi-calc'],['pbi-viz','pbi-interact'],['pbi-model','pbi-perf'],['pbi-perf','pbi-serv'],
     // Python Module 1 — Basics
     ['py-jupyter','py-basics'],
     ['py-basics','py-ds'],
@@ -115,5 +144,19 @@ export const baseGraph = {
     ['sql-query','py-ds'],
     ['py-oop','py-ml'],
     ['py-numpy','py-eda'],
+    // Cross-module links (expansion June 2026)
+    ['bus-experiment','stat-abtest'],
+    ['bus-forecast','stat-infer'],
+    ['bus-unit','bus-kpi'],
+    ['sql-date','py-pandas'],
+    ['sql-aggregate','ex-pivot'],
+    ['pbi-time','sql-date'],
+    ['pbi-calc','ex-pp'],
+    // Cross-module links (Excel/Stats expansion)
+    ['ex-dashboard','pbi-viz'],
+    ['ex-arrays','sql-aggregate'],
+    ['stat-regression','py-ml'],
+    ['stat-corr','py-eda'],
+    ['stat-sampling','bus-experiment'],
   ]
 };

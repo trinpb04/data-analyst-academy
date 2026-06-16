@@ -2,8 +2,8 @@ import React from 'react';
 import { Icons } from './icons.jsx';
 import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
-/* AppHeader — brand lockup, view switcher, module legend. */
-function AppHeader({ tab, onTab, theme, onToggleTheme }) {
+/* AppHeader — brand lockup, view switcher, module legend, theme + language toggle. */
+function AppHeader({ tab, onTab, theme, onToggleTheme, lang, onToggleLang }) {
   const { SegmentedTabs, IconButton } = DS;
   const I = Icons;
   const items = [
@@ -41,7 +41,23 @@ function AppHeader({ tab, onTab, theme, onToggleTheme }) {
             </div>
           ))}
         </div>
-        <IconButton variant="outline" aria-label={theme === 'dark' ? 'Chế độ sáng' : 'Chế độ tối'} onClick={onToggleTheme}>
+        {/* Language toggle VI | EN */}
+        <div role="group" aria-label={lang === 'vi' ? 'Ngôn ngữ' : 'Language'}
+          style={{ display: 'inline-flex', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+          {['vi', 'en'].map(code => (
+            <button key={code} onClick={() => { if (code !== lang) onToggleLang(); }}
+              aria-pressed={lang === code}
+              style={{
+                font: 'var(--fw-semibold) 12px/1 var(--font-sans)', letterSpacing: '0.04em',
+                padding: '7px 10px', border: 'none', cursor: 'pointer',
+                background: lang === code ? 'var(--brand)' : 'var(--surface-card)',
+                color: lang === code ? '#fff' : 'var(--text-muted)',
+              }}>
+              {code.toUpperCase()}
+            </button>
+          ))}
+        </div>
+        <IconButton variant="outline" aria-label={theme === 'dark' ? (lang === 'vi' ? 'Chế độ sáng' : 'Light mode') : (lang === 'vi' ? 'Chế độ tối' : 'Dark mode')} onClick={onToggleTheme}>
           {theme === 'dark' ? <I.Sun/> : <I.Moon/>}
         </IconButton>
       </div>

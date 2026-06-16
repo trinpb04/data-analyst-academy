@@ -1,10 +1,14 @@
 import React from 'react';
+import { useLang, pick } from '../i18n.jsx';
 /* LessonContent — renders a structured encyclopedia entry. Supports:
    {h, p} heading+prose · {p} prose · {list:[[term,def]]} glossary ·
    {code, lang} code block · {formula, caption} equation card ·
    {calc, steps:[]} worked calculation · {note} callout/quote ·
-   {img, caption} image from PDF with caption. */
+   {img, caption} image from PDF with caption.
+   Mỗi field text có thể là chuỗi thường hoặc { vi, en } (xem i18n.jsx). */
 function LessonContent({ entry, accent = 'var(--brand)' }) {
+  const lang = useLang();
+  const T = (f) => pick(f, lang);
   if (!entry) {
     return (
       <p style={{ font: 'var(--type-body)', color: 'var(--text-muted)' }}>
@@ -25,7 +29,7 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
               <pre style={{ margin: 0, background: 'var(--slate-950)', color: '#e2e8f0',
                 padding: '16px 18px', borderRadius: 'var(--radius-lg)', font: 'var(--type-code)',
                 fontSize: 13, lineHeight: 1.65, overflowX: 'auto', whiteSpace: 'pre' }}
-                dangerouslySetInnerHTML={{ __html: highlightCode(blk.code) }} />
+                dangerouslySetInnerHTML={{ __html: highlightCode(T(blk.code)) }} />
             </div>
           );
         }
@@ -33,22 +37,23 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
           return (
             <div key={i} style={{ background: 'var(--surface-sunken)', border: '1px solid var(--border)',
               borderRadius: 'var(--radius-lg)', padding: '20px 16px', textAlign: 'center' }}>
-              <div style={{ font: 'var(--fw-medium) 19px/1.5 var(--font-mono)', color: 'var(--text-strong)', whiteSpace: 'pre-wrap' }}>{blk.formula}</div>
-              {blk.caption && <div style={{ font: 'var(--type-meta)', color: 'var(--text-muted)', marginTop: 10 }}>{blk.caption}</div>}
+              <div style={{ font: 'var(--fw-medium) 19px/1.5 var(--font-mono)', color: 'var(--text-strong)', whiteSpace: 'pre-wrap' }}>{T(blk.formula)}</div>
+              {blk.caption && <div style={{ font: 'var(--type-meta)', color: 'var(--text-muted)', marginTop: 10 }}>{T(blk.caption)}</div>}
             </div>
           );
         }
         if (blk.calc) {
+          const steps = pick(blk.steps, lang) || [];
           return (
             <div key={i} style={{ border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
               <div style={{ padding: '8px 14px', background: 'var(--surface-sunken)', borderBottom: '1px solid var(--border)',
                 font: 'var(--fw-semibold) 12px/1 var(--font-sans)', color: 'var(--text-strong)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                {blk.calc}
+                {T(blk.calc)}
               </div>
               <div style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                {blk.steps.map((s, j) => (
-                  <div key={j} style={{ font: 'var(--type-code)', color: j === blk.steps.length - 1 ? 'var(--text-strong)' : 'var(--text-body)',
-                    fontWeight: j === blk.steps.length - 1 ? 600 : 400 }}>{s}</div>
+                {steps.map((s, j) => (
+                  <div key={j} style={{ font: 'var(--type-code)', color: j === steps.length - 1 ? 'var(--text-strong)' : 'var(--text-body)',
+                    fontWeight: j === steps.length - 1 ? 600 : 400 }}>{pick(s, lang)}</div>
                 ))}
               </div>
             </div>
@@ -60,7 +65,7 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
             <div key={i} style={{ margin: '4px 0' }}>
               <img
                 src={imgSrc}
-                alt={blk.caption || 'Hình minh họa từ PDF'}
+                alt={T(blk.caption) || 'Hình minh họa từ PDF'}
                 style={{
                   width: '100%', borderRadius: 'var(--radius-lg)',
                   border: '1px solid var(--border)',
@@ -73,7 +78,7 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
                   font: 'var(--type-meta)', color: 'var(--text-faint)',
                   textAlign: 'center', marginTop: 6, fontStyle: 'italic',
                   fontSize: 12,
-                }}>{blk.caption}</p>
+                }}>{T(blk.caption)}</p>
               )}
             </div>
           );
@@ -82,14 +87,17 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
           return (
             <div key={i} style={{ background: 'var(--brand-soft)', borderLeft: `3px solid ${accent}`,
               borderRadius: '0 var(--radius-md) var(--radius-md) 0', padding: '12px 16px' }}>
-              <p style={{ font: 'var(--fw-medium) 14px/1.6 var(--font-sans)', color: 'var(--note-text)' }}>{blk.note}</p>
+              <p style={{ font: 'var(--fw-medium) 14px/1.6 var(--font-sans)', color: 'var(--note-text)' }}>{T(blk.note)}</p>
             </div>
           );
         }
         if (blk.list) {
           return (
             <ul key={i} style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {blk.list.map(([term, def], j) => (
+              {blk.list.map((pair, j) => {
+                const term = pick(pair[0], lang);
+                const def = pick(pair[1], lang);
+                return (
                 <li key={j} style={{ display: 'flex', gap: 10, alignItems: 'baseline' }}>
                   <span style={{ flexShrink: 0, width: 6, height: 6, borderRadius: 9999, background: accent, transform: 'translateY(-2px)' }} />
                   <span>
@@ -97,18 +105,19 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
                     {def ? <span style={{ font: 'var(--type-body)', fontSize: 14, color: 'var(--text-body)' }} dangerouslySetInnerHTML={{ __html: ' — ' + def.replace(/`([^`]+)`/g, '<code style="background:var(--surface-sunken);padding:1px 5px;border-radius:4px;font-family:var(--font-mono);font-size:12.5px;color:var(--text-strong)">$1</code>') }} /> : null}
                   </span>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           );
         }
         return (
           <div key={i}>
-            {blk.h && <h3 style={{ font: 'var(--type-h3)', color: 'var(--text-strong)', marginBottom: 8 }}>{blk.h}</h3>}
-            {blk.p && <p style={{ font: 'var(--type-body)', fontSize: 15, color: 'var(--text-body)' }}>{blk.p}</p>}
+            {blk.h && <h3 style={{ font: 'var(--type-h3)', color: 'var(--text-strong)', marginBottom: 8 }}>{T(blk.h)}</h3>}
+            {blk.p && <p style={{ font: 'var(--type-body)', fontSize: 15, color: 'var(--text-body)' }}>{T(blk.p)}</p>}
           </div>
         );
       })}
-      {entry.source && <p style={{ font: 'var(--type-meta)', color: 'var(--text-faint)', fontStyle: 'italic', marginTop: 4 }}>{entry.source}</p>}
+      {entry.source && <p style={{ font: 'var(--type-meta)', color: 'var(--text-faint)', fontStyle: 'italic', marginTop: 4 }}>{T(entry.source)}</p>}
     </div>
   );
 }

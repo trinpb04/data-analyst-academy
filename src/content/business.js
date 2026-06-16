@@ -105,4 +105,79 @@ export const businessLessons = {
       ]},
     ],
   },
+  'bus-northstar': {
+    cluster: 'BUSINESS ACUMEN',
+    summary: 'North Star Metric & Metric Trees: chọn MỘT chỉ số dẫn dắt toàn công ty, rồi phân rã nó thành cây chỉ số (driver tree) để biết kéo đòn bẩy nào.',
+    body: [
+      { h: 'North Star Metric (NSM) là gì?', p: 'Một chỉ số duy nhất phản ánh giá trị cốt lõi mà sản phẩm mang lại cho khách hàng. Nó căn chỉnh mọi phòng ban về cùng một hướng, tránh tình trạng mỗi team tối ưu một KPI cục bộ rồi đá nhau.' },
+      { list: [
+        ['Đặc điểm NSM tốt', 'Phản ánh giá trị khách hàng nhận được (không phải doanh thu trực tiếp), dự báo được doanh thu dài hạn, và cả công ty tác động được vào nó.'],
+        ['Ví dụ kinh điển', 'Airbnb: số đêm được đặt. Spotify: thời gian nghe nhạc. WhatsApp: số tin nhắn gửi. Lưu ý: đều KHÔNG phải "doanh thu".'],
+        ['Bẫy Vanity Metric', 'Tổng số user đăng ký, lượt tải app — to và đẹp nhưng không phản ánh giá trị thực. Tránh chọn làm NSM.'],
+      ]},
+      { h: 'Metric Tree / Driver Tree', p: 'Phân rã NSM thành các thành phần nhân/cộng để biết chính xác đòn bẩy nào tác động đến nó. Đây là công cụ tư duy mạnh nhất để chuyển từ "số giảm" sang "làm gì để cải thiện".' },
+      { formula: 'Doanh thu = Traffic × Conversion Rate × AOV × Tần suất mua', caption: 'Ví dụ cây chỉ số e-commerce. Mỗi nhánh là một đòn bẩy team có thể tác động riêng.' },
+      { note: 'Sức mạnh của Driver Tree: khi sếp hỏi "doanh thu giảm 10%, làm gì?", bạn không đoán mò. Bạn đi xuống từng nhánh — Traffic giảm? Conversion giảm? AOV giảm? — và khoanh vùng đúng nguyên nhân để đề xuất hành động cụ thể.' },
+    ],
+  },
+  'bus-experiment': {
+    cluster: 'BUSINESS ACUMEN',
+    summary: 'Thiết kế thí nghiệm (A/B Testing) dưới góc nhìn ra quyết định kinh doanh: sizing, guardrail metrics, và các bẫy khiến kết luận sai (peeking, p-hacking, novelty effect).',
+    source: 'Nguồn tham khảo: Trustworthy Online Controlled Experiments (Kohavi).',
+    body: [
+      { h: 'Vì sao phải A/B test thay vì xem before/after?', p: 'So sánh "trước và sau khi đổi" trộn lẫn tác động của thay đổi với mùa vụ, marketing, xu hướng thị trường. Randomization (chia ngẫu nhiên Control/Treatment cùng thời điểm) là cách duy nhất phân lập được quan hệ NHÂN QUẢ thực sự.' },
+      { h: 'Thiết kế trước khi chạy', p: 'Mọi quyết định thống kê phải chốt TRƯỚC khi nhìn dữ liệu, nếu không bạn sẽ tự lừa mình:' },
+      { list: [
+        ['Primary Metric', 'Một chỉ số quyết định thắng/thua. Chọn trước, không đổi giữa chừng.'],
+        ['Guardrail Metrics', 'Các chỉ số KHÔNG được phép xấu đi (tốc độ tải trang, tỷ lệ lỗi, churn). Tăng conversion mà làm sập trải nghiệm thì không đáng.'],
+        ['MDE (Minimum Detectable Effect)', 'Mức cải thiện nhỏ nhất đáng để bạn quan tâm. MDE càng nhỏ, mẫu cần càng lớn.'],
+        ['Sample Size & Duration', 'Tính trước cỡ mẫu cần thiết; chạy đủ ít nhất 1-2 chu kỳ kinh doanh (thường 1-2 tuần) để hết hiệu ứng cuối tuần.'],
+      ]},
+      { h: 'Những bẫy giết chết kết luận', p: '' },
+      { list: [
+        ['Peeking / Dừng sớm', 'Liên tục kiểm tra kết quả rồi dừng ngay khi thấy "có ý nghĩa" → thổi phồng tỷ lệ dương tính giả. Phải chờ đủ thời gian đã định.'],
+        ['p-hacking', 'Cắt nhỏ dữ liệu theo nhiều phân khúc đến khi tìm được một segment "có ý nghĩa". Test 20 segment thì trung bình 1 cái sẽ "thắng" do ngẫu nhiên.'],
+        ['Novelty Effect', 'User tăng tương tác chỉ vì tính năng MỚI lạ, không bền. Hiệu ứng thường tan sau vài tuần — đừng kết luận vội.'],
+      ]},
+      { note: 'Tư duy Analyst trưởng thành: "không có ý nghĩa thống kê" KHÁC với "không có tác động". Nó có thể chỉ là mẫu chưa đủ lớn. Luôn báo cáo kèm khoảng tin cậy (confidence interval), đừng chỉ nói có/không.' },
+    ],
+  },
+  'bus-unit': {
+    cluster: 'BUSINESS ACUMEN',
+    summary: 'Unit Economics: mổ xẻ lợi nhuận trên MỘT đơn vị (1 khách / 1 đơn) qua Contribution Margin, Payback Period và LTV:CAC — tận dụng nền tảng tài chính của bạn.',
+    body: [
+      { h: 'Tư duy "trên một đơn vị"', p: 'Một công ty có thể tăng trưởng doanh thu ngùn ngụt mà vẫn phá sản nếu mỗi đơn vị bán ra đều lỗ. Unit Economics trả lời câu hỏi sống còn: "Mỗi khách hàng/đơn hàng thực sự mang lại bao nhiêu lợi nhuận?"' },
+      { list: [
+        ['Contribution Margin (Biên đóng góp)', 'Doanh thu − chi phí biến đổi trên mỗi đơn vị. Đây là tiền thực sự còn lại để bù chi phí cố định và tạo lợi nhuận.'],
+        ['CAC Payback Period', 'Mất bao nhiêu THÁNG để tiền khách mang về hoàn lại chi phí thu hút họ (CAC). SaaS khỏe thường < 12 tháng.'],
+        ['LTV:CAC Ratio', 'Tỷ lệ vàng. > 3 là mô hình lành mạnh; < 1 nghĩa là càng bán càng lỗ; > 5 có thể đang đầu tư marketing quá ít (bỏ lỡ tăng trưởng).'],
+      ]},
+      { formula: 'Contribution Margin = Giá bán − COGS − Phí vận chuyển − Phí thanh toán', caption: 'Chỉ trừ chi phí BIẾN ĐỔI (thay đổi theo từng đơn), không trừ chi phí cố định.' },
+      { calc: 'Unit Economics một đơn hàng e-commerce', steps: [
+        'Giá bán (AOV): $100',
+        'Trừ COGS (giá vốn): -$55',
+        'Trừ phí ship + đóng gói: -$12',
+        'Trừ phí cổng thanh toán (2.5%): -$2.5',
+        'Contribution Margin = $30.5 / đơn (margin 30.5%)',
+        'Nếu CAC = $25 → cần >1 đơn để hoà vốn khách',
+      ]},
+      { note: 'Liên hệ với Finance bạn đã học: Contribution Margin chính là tử số trong phân tích điểm hoà vốn (break-even = Chi phí cố định / Contribution Margin mỗi đơn vị). Unit Economics là cầu nối giữa kế toán quản trị và growth analytics.' },
+    ],
+  },
+  'bus-forecast': {
+    cluster: 'BUSINESS ACUMEN',
+    summary: 'Forecasting & Planning cho Analyst: run-rate, seasonality, budget vs actual (variance) và scenario planning — ngôn ngữ chung giữa Data và phòng Tài chính/FP&A.',
+    body: [
+      { h: 'Từ dữ liệu quá khứ đến kế hoạch tương lai', p: 'Analyst không chỉ giải thích chuyện đã xảy ra; bạn thường được hỏi "quý tới sẽ ra sao?". Không cần model phức tạp — vài kỹ thuật nền tảng giải quyết phần lớn nhu cầu doanh nghiệp.' },
+      { list: [
+        ['Run-rate', 'Ngoại suy đơn giản: lấy kết quả gần nhất nhân lên (doanh thu tháng × 12). Nhanh nhưng nguy hiểm nếu có mùa vụ — chỉ dùng để ước lượng thô.'],
+        ['Seasonality (Mùa vụ)', 'Tách yếu tố lặp lại theo chu kỳ. So sánh phải là YoY (cùng kỳ năm trước) chứ không phải MoM, để loại nhiễu mùa vụ.'],
+        ['Moving Average / Smoothing', 'Làm mượt nhiễu ngắn hạn để thấy xu hướng nền (trend) thật sự.'],
+        ['Scenario Planning', 'Luôn trình 3 kịch bản: Base / Best / Worst case, kèm giả định rõ ràng. Sếp ra quyết định dựa trên dải khả năng, không phải một con số cứng.'],
+      ]},
+      { h: 'Variance Analysis (Budget vs Actual)', p: 'Cốt lõi của vai trò FP&A và là nơi Analyst tạo giá trị trực tiếp: không chỉ báo "lệch bao nhiêu" mà giải thích "vì sao lệch".' },
+      { formula: 'Variance % = (Actual − Budget) / Budget × 100', caption: 'Tách variance thành Price variance (lệch giá) và Volume variance (lệch sản lượng) để biết nguyên nhân gốc.' },
+      { note: 'Giá trị thật của Analyst nằm ở phần "tại sao". "Doanh thu thấp hơn ngân sách 8%" là dữ liệu. "Thấp 8% vì Volume giảm 15% do mất 1 khách lớn, được bù một phần nhờ Price tăng 7%" mới là phân tích đáng tiền.' },
+    ],
+  },
 };

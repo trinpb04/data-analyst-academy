@@ -82,4 +82,79 @@ export const powerbiLessons = {
       { note: 'App: Sau khi hoàn thiện nhiều báo cáo trong Workspace, bạn sẽ đóng gói chúng lại thành một "App" chuyên nghiệp để gửi cho người dùng cuối. Họ chỉ có quyền xem, không sợ họ lỡ tay sửa xóa gì cả.' },
     ],
   },
+  'pbi-context': {
+    cluster: 'DATAVIZ & POWER BI',
+    summary: 'Evaluation Context — lý thuyết nền tảng của DAX. Hiểu Row Context vs Filter Context là ranh giới giữa người "gõ công thức" và người thực sự làm chủ DAX.',
+    body: [
+      { h: 'Hai loại Context', p: 'Mọi công thức DAX đều được tính trong một "bối cảnh" (context). Có đúng hai loại, và 90% lỗi DAX đến từ việc nhầm lẫn chúng:' },
+      { list: [
+        ['Row Context (Bối cảnh dòng)', 'DAX đang "đứng" ở một dòng cụ thể và biết giá trị các cột của dòng đó. Tự động xuất hiện trong Calculated Column và bên trong các hàm iterator (SUMX, FILTER).'],
+        ['Filter Context (Bối cảnh lọc)', 'Tập hợp các bộ lọc đang áp lên mô hình, đến từ slicer, hàng/cột của visual, hoặc CALCULATE. Quyết định Measure "nhìn thấy" những dòng nào.'],
+      ]},
+      { note: 'Điểm mấu chốt: Row Context KHÔNG tự động lọc dữ liệu. Một Calculated Column viết SUM(Sales[Amount]) sẽ ra TỔNG TOÀN BẢNG ở mọi dòng, chứ không phải giá trị của riêng dòng đó — vì SUM cần Filter Context, mà Row Context lại không tạo ra Filter Context.' },
+      { h: 'Context Transition — cây cầu nối', p: 'CALCULATE (và Measure, vì Measure ngầm chứa CALCULATE) biến Row Context hiện tại thành Filter Context tương đương. Đây là cơ chế khiến SUMX(Customers, [Total Sales]) tính đúng doanh thu riêng từng khách.' },
+      { code: "-- Cùng một biểu thức, hai context khác nhau\n-- Calculated Column (có Row Context): lặp qua từng dòng\nLine_Total = Sales[Qty] * Sales[Price]   -- OK, dùng cột của dòng hiện tại\n\n-- Measure (có Filter Context): phản ứng theo slicer\nTotal_Revenue = SUMX(Sales, Sales[Qty] * Sales[Price])\n-- SUMX tạo Row Context để nhân từng dòng, rồi cộng lại trong Filter Context", lang: 'dax' },
+      { note: 'Câu thần chú để nhớ: "Calculated Column tính MỘT LẦN khi refresh và lưu xuống ổ. Measure tính MỖI LẦN bạn nhìn vào visual, theo đúng filter lúc đó." Khi phân vân — luôn chọn Measure.' },
+    ],
+  },
+  'pbi-calc': {
+    cluster: 'DATAVIZ & POWER BI',
+    summary: 'CALCULATE engine: VAR để viết DAX sạch, iterators (SUMX) và các filter modifier (ALL, KEEPFILTERS, REMOVEFILTERS) — bộ công cụ để bẻ cong Filter Context theo ý muốn.',
+    body: [
+      { h: 'VAR / RETURN — viết DAX sạch và nhanh', p: 'Dùng biến (VAR) để tính một lần, tái sử dụng nhiều lần. Vừa dễ đọc, vừa tăng hiệu năng (engine không tính lại), vừa dễ debug.' },
+      { code: "% Doanh thu trên Tổng =\nVAR CurrentSales = [Total Sales]\nVAR AllSales     = CALCULATE([Total Sales], ALL(Product))\nRETURN\n    DIVIDE(CurrentSales, AllSales)", lang: 'dax' },
+      { h: 'Các Filter Modifier trong CALCULATE', p: 'Đây là nhóm hàm điều khiển Filter Context — kiến thức cốt lõi để tạo các chỉ số "% trên tổng", "so với toàn bộ", "bỏ qua slicer".' },
+      { list: [
+        ['ALL(Table/Col)', 'Xóa MỌI bộ lọc — dùng làm mẫu số cho phép tính tỷ trọng (% of total).'],
+        ['REMOVEFILTERS()', 'Tên gọi rõ nghĩa hơn của ALL khi dùng để xóa filter (DAX hiện đại).'],
+        ['ALLEXCEPT(T, col)', 'Xóa hết filter TRỪ những cột bạn chỉ định giữ lại.'],
+        ['KEEPFILTERS()', 'Giao (AND) bộ lọc mới với bộ lọc đang có, thay vì ghi đè — quan trọng khi không muốn CALCULATE "thổi bay" filter của visual.'],
+      ]},
+      { code: "-- % đóng góp trong NHÓM danh mục hiện tại (giữ filter danh mục, bỏ filter sản phẩm)\n% In Category =\nDIVIDE(\n    [Total Sales],\n    CALCULATE([Total Sales], ALLEXCEPT(Product, Product[Category]))\n)", lang: 'dax' },
+      { note: 'Bẫy thường gặp: CALCULATE([Sales], Product[Color]="Red") sẽ GHI ĐÈ filter màu của visual. Nếu muốn "Red AND màu user đang chọn", bọc trong KEEPFILTERS. Hiểu sai chỗ này là ra số sai mà không báo lỗi.' },
+    ],
+  },
+  'pbi-time': {
+    cluster: 'DATAVIZ & POWER BI',
+    summary: 'Time Intelligence: YTD, MTD, rolling average, YoY — các pattern thời gian xuất hiện trong gần như mọi dashboard kinh doanh. Bắt buộc phải có bảng Calendar riêng.',
+    body: [
+      { h: 'Điều kiện tiên quyết: Date Table', p: 'Mọi hàm Time Intelligence của DAX yêu cầu một bảng Lịch (Calendar) chuyên dụng, liên tục (không thiếu ngày) và được đánh dấu "Mark as Date Table". Không có nó, SAMEPERIODLASTYEAR và bạn bè sẽ trả về kết quả sai.' },
+      { code: "-- Tạo bảng Calendar bằng DAX\nCalendar =\nADDCOLUMNS(\n    CALENDAR(DATE(2023,1,1), DATE(2025,12,31)),\n    \"Year\",    YEAR([Date]),\n    \"Month\",   FORMAT([Date], \"MMM\"),\n    \"MonthNo\", MONTH([Date]),\n    \"Quarter\", \"Q\" & QUARTER([Date])\n)", lang: 'dax' },
+      { h: 'Bộ pattern thời gian thiết yếu', p: 'Học thuộc bốn pattern này là đủ xài cho 95% báo cáo:' },
+      { code: "Sales YTD   = TOTALYTD([Total Sales], 'Calendar'[Date])\nSales LY    = CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Calendar'[Date]))\nYoY %       = DIVIDE([Total Sales] - [Sales LY], [Sales LY])\nRolling 3M  =\n    CALCULATE(\n        [Total Sales],\n        DATESINPERIOD('Calendar'[Date], MAX('Calendar'[Date]), -3, MONTH)\n    )", lang: 'dax' },
+      { note: 'Lỗi kinh điển: dùng cột Date nằm trong bảng Fact (Sales) thay vì bảng Calendar. Time Intelligence cần một chiều thời gian liên tục, độc lập — luôn trỏ các hàm này vào Calendar[Date].' },
+    ],
+  },
+  'pbi-interact': {
+    cluster: 'DATAVIZ & POWER BI',
+    summary: 'Tương tác báo cáo: Bookmarks, Drill-through, Tooltips tùy biến và Field Parameters — biến một bảng số tĩnh thành công cụ khám phá mà stakeholder tự dùng được.',
+    body: [
+      { h: 'Từ báo cáo "xem" sang báo cáo "dùng"', p: 'Một dashboard tốt để người xem tự trả lời câu hỏi tiếp theo của họ mà không cần gọi bạn. Bốn tính năng tương tác cốt lõi:' },
+      { list: [
+        ['Bookmarks', 'Lưu lại trạng thái trang (filter, visual đang hiện). Kết hợp với nút bấm để tạo điều hướng, hoặc "show/hide" panel — nền tảng của mọi báo cáo trông như một app.'],
+        ['Drill-through', 'Click chuột phải vào một điểm dữ liệu (ví dụ 1 khách hàng) để nhảy sang trang chi tiết đã được lọc sẵn theo điểm đó.'],
+        ['Custom Tooltips', 'Tạo một trang nhỏ làm tooltip — khi rê chuột lên cột, hiện hẳn một mini-chart thay vì chỉ một con số.'],
+        ['Field Parameters', 'Cho người dùng tự chọn metric hoặc chiều phân tích muốn xem qua slicer (ví dụ đổi trục từ Doanh thu sang Lợi nhuận) — giảm số visual phải làm.'],
+      ]},
+      { note: 'Nguyên tắc UX: mỗi trang báo cáo nên trả lời ĐÚNG MỘT câu hỏi. Nếu một trang cố trả lời 5 câu, hãy tách thành 5 trang và nối bằng drill-through / nút điều hướng. Stakeholder ghét sự lộn xộn.' },
+    ],
+  },
+  'pbi-perf': {
+    cluster: 'DATAVIZ & POWER BI',
+    summary: 'Tối ưu hiệu năng: hiểu VertiPaq engine, dùng Performance Analyzer và DAX Studio để tìm điểm nghẽn — kỹ năng khiến báo cáo load trong 1 giây thay vì 30 giây.',
+    body: [
+      { h: 'VertiPaq — vì sao Power BI nhanh', p: 'Power BI nén dữ liệu theo CỘT (columnar) trong RAM. Hệ quả thực tế cho việc tối ưu: số cột và độ "đa dạng" (cardinality) của cột quan trọng hơn số dòng rất nhiều.' },
+      { list: [
+        ['Giảm Cardinality', 'Cột có càng ít giá trị khác nhau càng nén tốt. Cột datetime đầy đủ (giây) là kẻ thù — tách thành Date + Time riêng nếu cần.'],
+        ['Bỏ cột không dùng', 'Mỗi cột thừa = thêm RAM + chậm refresh. Xóa ở Power Query, đừng mang vào model.'],
+        ['Star Schema', 'Không chỉ để DAX đúng — mô hình sao còn nén và quét nhanh hơn hẳn snowflake hay one-big-table.'],
+      ]},
+      { h: 'Công cụ chẩn đoán', p: 'Đừng đoán mò điểm chậm — đo nó:' },
+      { list: [
+        ['Performance Analyzer', 'Tab có sẵn trong Power BI Desktop. Bấm record, tương tác báo cáo, xem mỗi visual tốn bao nhiêu ms ở phần DAX query vs Visual rendering.'],
+        ['DAX Studio', 'Công cụ ngoài (miễn phí). Xem Server Timings, phân biệt thời gian Storage Engine (nhanh, đa luồng) vs Formula Engine (chậm, đơn luồng). Mục tiêu: đẩy việc về Storage Engine.'],
+      ]},
+      { note: 'Quy tắc 80/20 của tối ưu Power BI: phần lớn báo cáo chậm KHÔNG phải do DAX, mà do mô hình dữ liệu tệ (thiếu star schema, cột cardinality cao, dùng DirectQuery khi không cần). Sửa model trước, tinh chỉnh DAX sau.' },
+    ],
+  },
 };

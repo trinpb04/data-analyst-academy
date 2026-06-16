@@ -4,6 +4,12 @@ import { Icons } from './icons.jsx';
 import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import LessonContent from './LessonContent.jsx';
+import { useLang, pick, UI } from '../i18n.jsx';
+
+const ATLAS_UI = {
+  hint: { vi: 'Cuộn để Zoom • Kéo để Di chuyển • Nhấn vào Node để học', en: 'Scroll to zoom • Drag to pan • Click a node to learn' },
+  close: { vi: 'Đóng', en: 'Close' },
+};
 
 // helper: hex + alpha → rgba()
 function hexA(hex, a) {
@@ -32,6 +38,8 @@ function AtlasView() {
   const { IconButton, ModuleTag, Button } = DS;
   const I = Icons;
   const A = ATLAS;
+  const lang = useLang();
+  const T = (f) => pick(f, lang);
   const [active, setActive] = useState(null);
   const [hoveredNode, setHoveredNode] = useState(null);
   const [draggedNode, setDraggedNode] = useState(null);
@@ -463,7 +471,7 @@ function AtlasView() {
         font: 'var(--type-meta)', color: isDark ? 'rgba(255,255,255,0.4)' : 'rgba(120,100,60,0.6)', pointerEvents: 'none',
         letterSpacing: '0.02em'
       }}>
-        Cuộn để Zoom • Kéo để Di chuyển • Nhấn vào Node để học
+        {T(ATLAS_UI.hint)}
       </div>
 
       {/* Encyclopedia sidebar */}
@@ -484,7 +492,7 @@ function AtlasView() {
                 <span style={{ width: 18, height: 18, color: colorOf(active.m), display: 'inline-flex' }}><I.Book /></span>
                 <span style={{ font: 'var(--type-title)', color: 'var(--text-strong)' }}>{active.t}</span>
               </div>
-              <IconButton aria-label="Đóng" onClick={() => setActive(null)}><I.X /></IconButton>
+              <IconButton aria-label={T(ATLAS_UI.close)} onClick={() => setActive(null)}><I.X /></IconButton>
             </div>
             <div style={{ flex: 1, overflowY: 'auto', padding: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
@@ -494,11 +502,11 @@ function AtlasView() {
               {entry && <p style={{
                 font: 'var(--type-body)', color: 'var(--text-body)', marginBottom: 20,
                 paddingLeft: 12, borderLeft: `3px solid ${colorOf(active.m)}`
-              }}>{entry.summary}</p>}
+              }}>{T(entry.summary)}</p>}
               <LessonContent entry={entry} accent={colorOf(active.m)} />
               {entry && (
                 <div style={{ display: 'flex', gap: 10, marginTop: 24, paddingTop: 20, borderTop: '1px solid var(--border)' }}>
-                  <Button fullWidth icon={<I.Check />}>Đánh dấu đã học</Button>
+                  <Button fullWidth icon={<I.Check />}>{T(UI.markLearned)}</Button>
                   <Button variant="outline" icon={<I.Star />} aria-label="Bookmark"></Button>
                 </div>
               )}
