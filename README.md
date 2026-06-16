@@ -62,7 +62,37 @@ The project is built with **React** and bundled using **Vite**.
    ```bash
    npm run dev
    ```
-   *Open your browser at `http://localhost:5175/data-analyst-academy/`*
+   *Open your browser at `http://localhost:5173/data-analyst-academy/` (Vite's default port is 5173)*
+
+4. **Test production build & PWA locally:**
+   ```bash
+   npm run build
+   npm run preview
+   ```
+   *Open your browser at `http://localhost:4173/data-analyst-academy/`*
+
+---
+
+## 📱 Install Web App (PWA)
+
+Data Analyst Academy is a Progressive Web App (PWA). You can install it directly to your device for an app-like experience and offline access:
+
+**On iOS (Safari):**
+1. Open the live demo link in Safari.
+2. Tap the **Share** button (square with an arrow pointing up) at the bottom.
+3. Scroll down and tap **"Add to Home Screen"**.
+4. Confirm by tapping **"Add"**.
+
+**On Android (Chrome):**
+1. Open the live demo link in Chrome.
+2. Tap the three-dot menu icon in the top right.
+3. Tap **"Install app"** or **"Add to Home screen"**.
+4. Follow the on-screen prompt to install.
+
+**On Desktop (Chrome/Edge):**
+1. Open the live demo link.
+2. Look for the **Install** icon in the right side of the URL address bar.
+3. Click it and select **"Install"**.
 
 ---
 
