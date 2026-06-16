@@ -7,7 +7,7 @@ import ReviseView from './views/ReviseView';
 import { LangContext } from './i18n.jsx';
 
 function App() {
-  const [tab, setTab] = useState('atlas');
+  const [tab, setTab] = useState(() => (typeof window !== 'undefined' && window.matchMedia('(max-width: 480px)').matches) ? 'lessons' : 'atlas');
   const [theme, setTheme] = useState(() => localStorage.getItem('daa-theme') || 'light');
   const [lang, setLang] = useState(() => localStorage.getItem('daa-lang') || 'vi');
   const [targetModule, setTargetModule] = useState(null);

@@ -4,6 +4,7 @@ import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import LessonContent from './LessonContent.jsx';
 import { useLang, pick, UI } from '../i18n.jsx';
+import { useIsMobile } from '../useMediaQuery.js';
 /* LessonsView — module-grouped lesson library, with a reading view. */
 function LessonsView({ targetModule, onModuleScrolled }) {
   const { Card, ModuleTag, Button, Badge, Input } = DS;
@@ -11,6 +12,7 @@ function LessonsView({ targetModule, onModuleScrolled }) {
   const A = ATLAS;
   const lang = useLang();
   const T = (f) => pick(f, lang);
+  const isMobile = useIsMobile();
   const [reading, setReading] = React.useState(null);
 
   React.useEffect(() => {
@@ -28,19 +30,19 @@ function LessonsView({ targetModule, onModuleScrolled }) {
     return (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--surface-page)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '16px 24px', background: 'var(--surface-card)', borderBottom: '1px solid var(--border)', boxShadow: 'var(--shadow-xs)' }}>
+          padding: isMobile ? '16px 14px' : '16px 24px', background: 'var(--surface-card)', borderBottom: '1px solid var(--border)', boxShadow: 'var(--shadow-xs)', flexWrap: 'wrap', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <ModuleTag module={reading.m}/>
             <h2 style={{ font: 'var(--type-h2)', color: 'var(--text-strong)' }}>{reading.t}</h2>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Button variant="secondary" size="sm" onClick={() => setReading(null)}>{T(UI.backToLessons)}</Button>
-            <Button size="sm" icon={<I.Check/>}>{T(UI.markLearned)}</Button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+            <Button variant="secondary" size="sm" onClick={() => setReading(null)} style={{ minHeight: isMobile ? 44 : undefined }}>{T(UI.backToLessons)}</Button>
+            <Button size="sm" icon={<I.Check/>} style={{ minHeight: isMobile ? 44 : undefined }}>{T(UI.markLearned)}</Button>
           </div>
         </div>
-        <div style={{ flex: 1, overflowY: 'auto', padding: '40px 24px' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '20px 14px' : '40px 24px' }}>
           <div style={{ maxWidth: 760, margin: '0 auto', background: 'var(--surface-card)', border: '1px solid var(--border)',
-            borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-sm)', padding: 36 }}>
+            borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-sm)', padding: isMobile ? '18px 14px' : 36 }}>
             {entry && <p style={{ font: 'var(--type-body)', color: 'var(--text-body)', marginBottom: 24,
               paddingLeft: 14, borderLeft: `3px solid ${A.modules.find(m=>m.id===reading.m).color}` }}>{T(entry.summary)}</p>}
             <LessonContent entry={entry} accent={A.modules.find(m=>m.id===reading.m).color}/>
@@ -51,7 +53,7 @@ function LessonsView({ targetModule, onModuleScrolled }) {
   }
 
   return (
-    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--surface-page)', padding: '40px 32px' }}>
+    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--surface-page)', padding: isMobile ? '20px 14px' : '40px 32px' }}>
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <h2 style={{ font: 'var(--type-h2)', color: 'var(--text-strong)', marginBottom: 10 }}>{T(UI.lessonsTitle)}</h2>
@@ -74,7 +76,7 @@ function LessonsView({ targetModule, onModuleScrolled }) {
                   <h3 style={{ font: 'var(--type-h3)', color: 'var(--text-strong)' }}>{mod.label}</h3>
                   <Badge tone="neutral">{nodes.length} {T(UI.lessonsUnit)}</Badge>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 14 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(230px, 1fr))', gap: 14 }}>
                   {nodes.map(node => {
                     const hasContent = !!A.lessons[node.id];
                     return (

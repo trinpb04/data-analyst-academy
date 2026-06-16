@@ -2,8 +2,11 @@ import React from 'react';
 import { Icons } from './icons.jsx';
 import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
+import { useIsMobile } from '../useMediaQuery.js';
+
 /* AppHeader — brand lockup, view switcher, module legend, theme + language toggle. */
 function AppHeader({ tab, onTab, theme, onToggleTheme, lang, onToggleLang }) {
+  const isMobile = useIsMobile();
   const { SegmentedTabs, IconButton } = DS;
   const I = Icons;
   const items = [
@@ -16,23 +19,25 @@ function AppHeader({ tab, onTab, theme, onToggleTheme, lang, onToggleLang }) {
     <header style={{
       height: 'var(--header-h)', flexShrink: 0, zIndex: 10, position: 'relative',
       display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      padding: '0 20px', background: 'var(--surface-card)',
+      padding: isMobile ? '0 12px' : '0 20px', background: 'var(--surface-card)',
       borderBottom: '1px solid var(--border)', boxShadow: 'var(--shadow-xs)',
     }}>
       {/* Lockup */}
-      <div className="daa-lockup" style={{ minWidth: 200 }}>
+      <div className="daa-lockup" style={{ minWidth: isMobile ? 0 : 200, display: 'flex', alignItems: 'center', gap: 12 }}>
         <img src={theme === 'dark' ? `${import.meta.env.BASE_URL}logo-mark-dark.png` : `${import.meta.env.BASE_URL}logo-mark-light.png`} alt="" style={{ width: 34, height: 34 }}/>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <span className="daa-lockup__name">Data Analyst</span>
-          <span className="daa-lockup__eyebrow">Encyclopedia</span>
-        </div>
+        {!isMobile && (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span className="daa-lockup__name">Data Analyst</span>
+            <span className="daa-lockup__eyebrow">Encyclopedia</span>
+          </div>
+        )}
       </div>
 
       {/* View switcher */}
-      <SegmentedTabs value={tab} onChange={onTab} items={items}/>
+      <SegmentedTabs value={tab} onChange={onTab} items={items} iconOnly={isMobile} />
 
       {/* Right cluster: theme toggle + legend */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, minWidth: 200, justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, minWidth: isMobile ? 0 : 200, justifyContent: 'flex-end' }}>
         <div className="daa-legend" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           {ATLAS.modules.map(m => (
             <div key={m.id} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>

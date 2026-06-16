@@ -3,11 +3,13 @@ import { Icons } from './icons.jsx';
 import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import { useLang, pick, UI } from '../i18n.jsx';
+import { useIsMobile } from '../useMediaQuery.js';
 /* ReviseView — quick-reference cheat sheets for interviews & daily tasks. */
 function ReviseView() {
   const { Card, ModuleTag, Badge } = DS;
   const lang = useLang();
   const T = (f) => pick(f, lang);
+  const isMobile = useIsMobile();
   const sheets = [
     { m: 'sql', title: 'SQL Quick Reference', items: ['SELECT · FROM · WHERE · GROUP BY', 'JOINs — INNER, LEFT, RIGHT, FULL', 'Window Functions — ROW_NUMBER, RANK', 'CTEs — WITH name AS (...)'] },
     { m: 'excel', title: 'Excel Power Functions', items: ['XLOOKUP / INDEX + MATCH', 'SUMIFS · COUNTIFS · AVERAGEIFS', 'Pivot Tables & Slicers', 'Power Query — unpivot, merge'] },
@@ -18,11 +20,11 @@ function ReviseView() {
   ];
   const colorOf = (id) => ATLAS.modules.find(m => m.id === id).color;
   return (
-    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--surface-page)', padding: '40px 32px' }}>
+    <div style={{ flex: 1, overflowY: 'auto', background: 'var(--surface-page)', padding: isMobile ? '20px 16px' : '40px 32px' }}>
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
         <h2 style={{ font: 'var(--type-h2)', color: 'var(--text-strong)', marginBottom: 6 }}>{T(UI.reviseTitle)}</h2>
         <p style={{ font: 'var(--type-body)', color: 'var(--text-muted)', marginBottom: 28 }}>{T(UI.reviseDesc)}</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
           {sheets.map((s, i) => (
             <Card key={i} accent={colorOf(s.m)} padding={20}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>

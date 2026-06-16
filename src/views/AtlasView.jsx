@@ -5,6 +5,7 @@ import { ATLAS } from '../content/index.js';
 import * as DS from '../components/index.js';
 import LessonContent from './LessonContent.jsx';
 import { useLang, pick, UI } from '../i18n.jsx';
+import { useIsMobile, useIsTablet } from '../useMediaQuery.js';
 
 const ATLAS_UI = {
   hint: { vi: 'Cuộn để Zoom • Kéo để Di chuyển • Nhấn vào Node để học', en: 'Scroll to zoom • Drag to pan • Click a node to learn' },
@@ -40,6 +41,8 @@ function AtlasView() {
   const A = ATLAS;
   const lang = useLang();
   const T = (f) => pick(f, lang);
+  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const [active, setActive] = useState(null);
   const [hoveredNode, setHoveredNode] = useState(null);
   const [draggedNode, setDraggedNode] = useState(null);
@@ -105,6 +108,15 @@ function AtlasView() {
     ro.observe(wrapRef.current);
     return () => ro.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (fgRef.current && isTablet) {
+      // Small delay to ensure the graph has rendered
+      setTimeout(() => {
+        if (fgRef.current) fgRef.current.zoomToFit(400, 40);
+      }, 50);
+    }
+  }, [size, isTablet]);
 
   // Set up physics: disable ALL d3 forces, pin nodes at initial positions
   useEffect(() => {
@@ -476,7 +488,7 @@ function AtlasView() {
 
       {/* Encyclopedia sidebar */}
       <div style={{
-        position: 'absolute', top: 0, right: 0, height: '100%', width: 'var(--sidebar-w)', maxWidth: '92%',
+        position: 'absolute', top: 0, right: 0, height: '100%', width: isMobile ? '100%' : 'var(--sidebar-w)', maxWidth: isMobile ? '100%' : '92%',
         background: 'var(--surface-card)', borderLeft: '1px solid var(--border)', boxShadow: 'var(--shadow-2xl)',
         transform: active ? 'translateX(0)' : 'translateX(100%)',
         transition: 'transform var(--dur-slow) var(--ease-out)',
