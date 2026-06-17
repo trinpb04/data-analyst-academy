@@ -103,10 +103,9 @@ chung** (comment nên bằng tiếng Anh cho trung lập), KHÔNG tách `{vi,en}
 }
 ```
 
-**Trạng thái dịch hiện tại** (06/2026): **Excel** và **Statistics** đã song ngữ đầy đủ +
-toàn bộ **UI chrome**. Các module **Business, SQL, Power BI, Python** vẫn để chuỗi tiếng Việt
-(fallback) — render bình thường, sẽ dịch dần sang `{vi,en}` ở các đợt sau. Khi thêm lesson mới,
-**viết song ngữ ngay từ đầu**.
+**Trạng thái dịch hiện tại** (06/2026): **TẤT CẢ 6 module** (Business, Excel, Statistics, SQL,
+Power BI, Python) + toàn bộ **UI chrome** đã song ngữ `{vi,en}` đầy đủ. Toggle EN/VI đổi được
+mọi nội dung bài học. Khi thêm lesson mới, **viết song ngữ ngay từ đầu** (đừng để chuỗi VI thuần).
 
 Renderer `LessonContent.jsx` đã gọi `pick()` cho mọi field, nên chỉ cần đổi data sang `{vi,en}`
 là tự động chuyển ngôn ngữ — không phải sửa renderer.
