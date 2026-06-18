@@ -373,7 +373,7 @@ function AtlasView() {
           return (s === focusNode.id || t === focusNode.id) ? 2.5 : 0.5;
         }}
         linkDirectionalParticles={isDark ? 2 : 1}
-        linkDirectionalParticleSpeed={isDark ? 0.004 : 0.0025}
+        linkDirectionalParticleSpeed={isDark ? 0.0016 : 0.001}
         linkDirectionalParticleWidth={1.8}
         linkDirectionalParticleColor={() => isDark ? 'rgba(255,255,255,0.8)' : 'rgba(180,140,40,0.6)'}
         onNodeClick={(node) => {
