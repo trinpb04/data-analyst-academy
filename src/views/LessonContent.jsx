@@ -28,7 +28,7 @@ function LessonContent({ entry, accent = 'var(--brand)' }) {
               )}
               <pre style={{ margin: 0, background: 'var(--slate-950)', color: '#e2e8f0',
                 padding: '16px 18px', borderRadius: 'var(--radius-lg)', font: 'var(--type-code)',
-                fontSize: 13, lineHeight: 1.65, overflowX: 'auto', whiteSpace: 'pre' }}
+                fontSize: 13, lineHeight: 1.65, overflowX: 'auto', whiteSpace: 'pre', maxWidth: '100%' }}
                 dangerouslySetInnerHTML={{ __html: highlightCode(T(blk.code)) }} />
             </div>
           );
