@@ -28,7 +28,7 @@ function LessonsView({ targetModule, onModuleScrolled }) {
   if (reading) {
     const entry = A.lessons[reading.id];
     return (
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--surface-page)' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'var(--surface-page)', overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           padding: isMobile ? '16px 14px' : '16px 24px', background: 'var(--surface-card)', borderBottom: '1px solid var(--border)', boxShadow: 'var(--shadow-xs)', flexWrap: 'wrap', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -41,7 +41,7 @@ function LessonsView({ targetModule, onModuleScrolled }) {
           </div>
         </div>
         <div style={{ flex: 1, overflowY: 'auto', padding: isMobile ? '20px 14px' : '40px 24px' }}>
-          <div style={{ maxWidth: 760, margin: '0 auto', background: 'var(--surface-card)', border: '1px solid var(--border)',
+          <div style={{ width: '100%', maxWidth: 760, margin: '0 auto', background: 'var(--surface-card)', border: '1px solid var(--border)',
             borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-sm)', padding: isMobile ? '18px 14px' : 36 }}>
             {entry && <p style={{ font: 'var(--type-body)', color: 'var(--text-body)', marginBottom: 24,
               paddingLeft: 14, borderLeft: `3px solid ${A.modules.find(m=>m.id===reading.m).color}` }}>{T(entry.summary)}</p>}
