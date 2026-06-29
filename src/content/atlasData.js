@@ -6,6 +6,7 @@ export const baseGraph = {
     { id: 'sql',        label: 'SQL',                 color: '#0078d7', soft: '#e3f0fb' },
     { id: 'python',     label: 'Python',              color: '#4b8bbe', soft: '#eaf1f7' },
     { id: 'powerbi',    label: 'DataViz & Power BI',  color: '#f2c811', soft: '#fdf6dc' },
+    { id: 'dbt',        label: 'dbt & Analytics Eng', color: '#ff694b', soft: '#ffe7e0' },
   ],
   clusters: [
     { module: 'business',   label: 'BUSINESS ACUMEN',   x: 215, y: 120 },
@@ -14,6 +15,7 @@ export const baseGraph = {
     { module: 'sql',        label: 'SQL & DATABASES',   x: 220, y: 470 },
     { module: 'powerbi',    label: 'DATAVIZ & POWER BI',x: 540, y: 520 },
     { module: 'python',     label: 'PYTHON FOR DATA',   x: 900, y: 500 },
+    { module: 'dbt',        label: 'DBT & ANALYTICS ENGINEERING', x: 480, y: 880 },
   ],
   nodes: [
     // Business
@@ -68,6 +70,31 @@ export const baseGraph = {
     { id: 'pbi-time',    m: 'powerbi', t: 'Time Intelligence',  x: 715, y: 490, v: 7 },
     { id: 'pbi-interact',m: 'powerbi', t: 'Report Interactivity', x: 480, y: 660, v: 6 },
     { id: 'pbi-perf',    m: 'powerbi', t: 'Performance Tuning', x: 620, y: 655, v: 7 },
+    // dbt & Analytics Engineering — own region at the bottom band (y 700-1000)
+    // Concepts
+    { id: 'dbt-intro',    m: 'dbt', t: 'What is dbt?',          x: 300, y: 720, v: 9 },
+    { id: 'dbt-project',  m: 'dbt', t: 'Project & ref()',       x: 410, y: 705, v: 8 },
+    { id: 'dbt-jinja',    m: 'dbt', t: 'Jinja & Macros',        x: 520, y: 720, v: 7 },
+    // Commands (each cheat-sheet folder = one node)
+    { id: 'dbt-setup',    m: 'dbt', t: 'Setup & Connection',    x: 190, y: 770, v: 6 },
+    { id: 'dbt-build',    m: 'dbt', t: 'Build Commands',        x: 320, y: 790, v: 8 },
+    { id: 'dbt-selection',m: 'dbt', t: 'Node Selection',        x: 640, y: 745, v: 8 },
+    { id: 'dbt-inspect',  m: 'dbt', t: 'Inspect & Document',    x: 740, y: 785, v: 6 },
+    { id: 'dbt-operate',  m: 'dbt', t: 'Operate & Recover',     x: 800, y: 730, v: 6 },
+    // Building models
+    { id: 'dbt-models',   m: 'dbt', t: 'Models & Materializations', x: 380, y: 855, v: 8 },
+    { id: 'dbt-layers',   m: 'dbt', t: 'Project Layers',        x: 490, y: 845, v: 7 },
+    { id: 'dbt-sources',  m: 'dbt', t: 'Sources & Freshness',   x: 600, y: 865, v: 7 },
+    { id: 'dbt-test',     m: 'dbt', t: 'Tests',                 x: 680, y: 895, v: 8 },
+    { id: 'dbt-docs',     m: 'dbt', t: 'Docs & Lineage',        x: 760, y: 870, v: 7 },
+    { id: 'dbt-snapshots',m: 'dbt', t: 'Snapshots (SCD2)',      x: 560, y: 920, v: 6 },
+    { id: 'dbt-deploy',   m: 'dbt', t: 'Deployment & CI/CD',    x: 700, y: 945, v: 7 },
+    // Data Modeling Frameworks (hub + 4 detail nodes)
+    { id: 'dbt-modeling', m: 'dbt', t: 'Data Modeling Frameworks', x: 270, y: 855, v: 9 },
+    { id: 'dbt-kimball',  m: 'dbt', t: 'Kimball Dimensional',   x: 175, y: 905, v: 8 },
+    { id: 'dbt-medallion',m: 'dbt', t: 'Medallion Architecture',x: 320, y: 945, v: 7 },
+    { id: 'dbt-vault',    m: 'dbt', t: 'Data Vault 2.0',        x: 165, y: 975, v: 6 },
+    { id: 'dbt-normalize',m: 'dbt', t: 'Normalize vs Denormalize', x: 400, y: 960, v: 7 },
     // Python — Module 1: Basics
     { id: 'py-jupyter',  m: 'python', t: 'Jupyter & Setup',      x: 720, y: 340, v: 6 },
     { id: 'py-basics',   m: 'python', t: 'Python Basics',        x: 810, y: 355, v: 8 },
@@ -158,5 +185,26 @@ export const baseGraph = {
     ['stat-regression','py-ml'],
     ['stat-corr','py-eda'],
     ['stat-sampling','bus-experiment'],
+    // dbt internal — learning sequence
+    ['dbt-intro','dbt-project'],['dbt-project','dbt-jinja'],
+    ['dbt-project','dbt-setup'],['dbt-setup','dbt-build'],
+    ['dbt-project','dbt-models'],['dbt-models','dbt-layers'],['dbt-models','dbt-jinja'],
+    ['dbt-layers','dbt-sources'],['dbt-sources','dbt-test'],['dbt-test','dbt-docs'],
+    ['dbt-models','dbt-snapshots'],
+    ['dbt-build','dbt-selection'],['dbt-selection','dbt-inspect'],['dbt-inspect','dbt-operate'],
+    ['dbt-build','dbt-deploy'],['dbt-selection','dbt-deploy'],['dbt-test','dbt-deploy'],
+    // dbt — Data Modeling Frameworks sub-cluster
+    ['dbt-layers','dbt-modeling'],
+    ['dbt-modeling','dbt-kimball'],['dbt-modeling','dbt-medallion'],
+    ['dbt-modeling','dbt-vault'],['dbt-modeling','dbt-normalize'],
+    ['dbt-kimball','dbt-medallion'],['dbt-kimball','dbt-snapshots'],
+    // dbt cross-module (kept few so the cluster stays in its own region)
+    ['sql-etl','dbt-intro'],
+    ['sql-query','dbt-models'],
+    ['sql-quality','dbt-test'],
+    ['pbi-model','dbt-kimball'],
+    ['ex-pp','dbt-modeling'],
+    ['sql-intro','dbt-normalize'],
+    ['sql-etl','dbt-medallion'],
   ]
 };

@@ -17,6 +17,7 @@ function ReviseView() {
     { m: 'python', title: 'Pandas Cheat Sheet', items: ['df.groupby().agg()', 'df.merge(other, on=...)', 'df.pivot_table()', 'df.loc / df.iloc selection'] },
     { m: 'powerbi', title: 'DAX Essentials', items: ['CALCULATE — modify filter context', 'SUMX / AVERAGEX iterators', 'Time intelligence — TOTALYTD', 'Star schema > flat tables'] },
     { m: 'business', title: 'Metrics Glossary', items: ['AOV · CAC · LTV · Churn', 'MRR · ARR · NRR (SaaS)', 'CTR · ROAS (Marketing)', 'AARRR — pirate metrics'] },
+    { m: 'dbt', title: 'dbt Commands & Selectors', items: ['dbt build — seeds→models→snapshots→tests', 'dbt run / test / seed / snapshot', '-s +model (upstream) · model+ (downstream)', 'state:modified+ --defer (Slim CI)', 'ref() · source() · {{ config(materialized) }}'] },
   ];
   const colorOf = (id) => ATLAS.modules.find(m => m.id === id).color;
   return (
