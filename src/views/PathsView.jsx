@@ -18,6 +18,7 @@ function PathsView({ onNavigateToModule }) {
     { n: '4', moduleId: 'sql', title: 'SQL & Databases', desc: { vi: 'Trích xuất dữ liệu từ Database. Thành thạo JOINs, Window Functions.', en: 'Extract data from databases. Master JOINs and window functions.' }, color: '#0078d7', icon: <I.Database/> },
     { n: '5', moduleId: 'powerbi', title: 'DataViz & Power BI', desc: { vi: 'Kể chuyện với dữ liệu. Xây dựng Data Model (Star Schema) và Dashboards.', en: 'Tell stories with data. Build a data model (star schema) and dashboards.' }, color: '#f2c811', icon: <I.Chart/> },
     { n: '6', moduleId: 'python', title: 'Python for Data (Advanced)', desc: { vi: 'Tự động hóa, xử lý dữ liệu lớn bằng Pandas và Machine Learning cơ bản.', en: 'Automate and process large data with Pandas and introductory Machine Learning.' }, color: '#4b8bbe', icon: <I.Code/> },
+    { n: '7', moduleId: 'dbt', title: 'Analytics Engineering (dbt)', desc: { vi: 'Đưa kỷ luật kỹ sư vào dữ liệu: biến đổi bằng SQL + Jinja, test, docs và mô hình hóa kho dữ liệu (Kimball, Medallion).', en: 'Bring engineering discipline to data: transform with SQL + Jinja, test, document, and model the warehouse (Kimball, Medallion).' }, color: '#ff694b', icon: <I.Flame/> },
   ];
   return (
     <div style={{ flex: 1, overflowY: 'auto', background: 'var(--surface-page)', padding: isMobile ? '28px 16px' : '48px 32px' }}>

@@ -7,6 +7,7 @@ const MODULES = {
   sql:        { c: 'var(--mod-sql)',        s: 'var(--mod-sql-soft)',        label: 'SQL' },
   python:     { c: 'var(--mod-python)',     s: 'var(--mod-python-soft)',     label: 'Python' },
   powerbi:    { c: 'var(--mod-powerbi)',    s: 'var(--mod-powerbi-soft)',    label: 'Power BI' },
+  dbt:        { c: 'var(--mod-dbt)',        s: 'var(--mod-dbt-soft)',        label: 'dbt' },
 };
 
 /**
