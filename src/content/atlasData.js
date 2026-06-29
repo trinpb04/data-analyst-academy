@@ -6,6 +6,7 @@ export const baseGraph = {
     { id: 'sql',        label: 'SQL',                 color: '#0078d7', soft: '#e3f0fb' },
     { id: 'python',     label: 'Python',              color: '#4b8bbe', soft: '#eaf1f7' },
     { id: 'powerbi',    label: 'DataViz & Power BI',  color: '#f2c811', soft: '#fdf6dc' },
+    { id: 'dbt',        label: 'dbt & Analytics Eng', color: '#ff694b', soft: '#ffe7e0' },
   ],
   clusters: [
     { module: 'business',   label: 'BUSINESS ACUMEN',   x: 215, y: 120 },
@@ -14,6 +15,7 @@ export const baseGraph = {
     { module: 'sql',        label: 'SQL & DATABASES',   x: 220, y: 470 },
     { module: 'powerbi',    label: 'DATAVIZ & POWER BI',x: 540, y: 520 },
     { module: 'python',     label: 'PYTHON FOR DATA',   x: 900, y: 500 },
+    { module: 'dbt',        label: 'DBT & ANALYTICS ENGINEERING', x: 415, y: 330 },
   ],
   nodes: [
     // Business
@@ -68,6 +70,13 @@ export const baseGraph = {
     { id: 'pbi-time',    m: 'powerbi', t: 'Time Intelligence',  x: 715, y: 490, v: 7 },
     { id: 'pbi-interact',m: 'powerbi', t: 'Report Interactivity', x: 480, y: 660, v: 6 },
     { id: 'pbi-perf',    m: 'powerbi', t: 'Performance Tuning', x: 620, y: 655, v: 7 },
+    // dbt & Analytics Engineering
+    { id: 'dbt-intro',    m: 'dbt', t: 'What is dbt?',            x: 400, y: 300, v: 8 },
+    { id: 'dbt-commands', m: 'dbt', t: 'Main Commands',          x: 315, y: 330, v: 8 },
+    { id: 'dbt-selection',m: 'dbt', t: 'Node Selection',         x: 470, y: 300, v: 7 },
+    { id: 'dbt-models',   m: 'dbt', t: 'Models & Materializations', x: 375, y: 375, v: 8 },
+    { id: 'dbt-test',     m: 'dbt', t: 'Tests & Docs',           x: 300, y: 390, v: 7 },
+    { id: 'dbt-modeling', m: 'dbt', t: 'Data Modeling Frameworks', x: 480, y: 370, v: 8 },
     // Python — Module 1: Basics
     { id: 'py-jupyter',  m: 'python', t: 'Jupyter & Setup',      x: 720, y: 340, v: 6 },
     { id: 'py-basics',   m: 'python', t: 'Python Basics',        x: 810, y: 355, v: 8 },
@@ -158,5 +167,16 @@ export const baseGraph = {
     ['stat-regression','py-ml'],
     ['stat-corr','py-eda'],
     ['stat-sampling','bus-experiment'],
+    // dbt internal
+    ['dbt-intro','dbt-commands'],['dbt-commands','dbt-selection'],['dbt-intro','dbt-selection'],
+    ['dbt-intro','dbt-models'],['dbt-models','dbt-test'],['dbt-models','dbt-modeling'],
+    // dbt cross-module (Data Modeling Frameworks links to other nodes)
+    ['sql-etl','dbt-intro'],
+    ['sql-query','dbt-models'],
+    ['sql-quality','dbt-test'],
+    ['pbi-model','dbt-modeling'],
+    ['ex-pp','dbt-modeling'],
+    ['sql-intro','dbt-modeling'],
+    ['py-pandas','dbt-models'],
   ]
 };
