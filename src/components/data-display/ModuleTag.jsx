@@ -8,6 +8,7 @@ const MODULES = {
   python:     { c: 'var(--mod-python)',     s: 'var(--mod-python-soft)',     label: 'Python' },
   powerbi:    { c: 'var(--mod-powerbi)',    s: 'var(--mod-powerbi-soft)',    label: 'Power BI' },
   dbt:        { c: 'var(--mod-dbt)',        s: 'var(--mod-dbt-soft)',        label: 'dbt' },
+  apidata:    { c: 'var(--mod-apidata)',    s: 'var(--mod-apidata-soft)',    label: 'APIs' },
 };
 
 /**

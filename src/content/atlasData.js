@@ -7,6 +7,7 @@ export const baseGraph = {
     { id: 'python',     label: 'Python',              color: '#4b8bbe', soft: '#eaf1f7' },
     { id: 'powerbi',    label: 'DataViz & Power BI',  color: '#f2c811', soft: '#fdf6dc' },
     { id: 'dbt',        label: 'dbt & Analytics Eng', color: '#ff694b', soft: '#ffe7e0' },
+    { id: 'apidata',    label: 'APIs & Data Sources', color: '#06b6d4', soft: '#d8f3fa' },
   ],
   clusters: [
     { module: 'business',   label: 'BUSINESS ACUMEN',   x: 215, y: 120 },
@@ -16,6 +17,7 @@ export const baseGraph = {
     { module: 'powerbi',    label: 'DATAVIZ & POWER BI',x: 540, y: 520 },
     { module: 'python',     label: 'PYTHON FOR DATA',   x: 900, y: 500 },
     { module: 'dbt',        label: 'DBT & ANALYTICS ENGINEERING', x: 480, y: 880 },
+    { module: 'apidata',    label: 'APIS & DATA SOURCES', x: 1200, y: 340 },
   ],
   nodes: [
     // Business
@@ -116,6 +118,18 @@ export const baseGraph = {
     { id: 'py-scrape',   m: 'python', t: 'Web Scraping',         x: 750, y: 570, v: 6 },
     { id: 'py-api',      m: 'python', t: 'APIs & REST',          x: 690, y: 520, v: 6 },
     { id: 'py-stats',    m: 'python', t: 'Stat Analysis',        x: 1070, y: 550, v: 7 },
+    // APIs & Data Sources — own region on the far right
+    { id: 'apidata-intro',       m: 'apidata', t: 'API & Data Sources',  x: 1150, y: 250, v: 9 },
+    { id: 'apidata-practice',    m: 'apidata', t: 'Practice & Mock APIs', x: 1055, y: 300, v: 7 },
+    { id: 'apidata-ecom',        m: 'apidata', t: 'E-commerce APIs',     x: 1255, y: 255, v: 7 },
+    { id: 'apidata-stock',       m: 'apidata', t: 'Stock & Market APIs', x: 1205, y: 335, v: 8 },
+    { id: 'apidata-crypto',      m: 'apidata', t: 'Crypto APIs',         x: 1310, y: 320, v: 7 },
+    { id: 'apidata-finance',     m: 'apidata', t: 'Banking & FX APIs',   x: 1095, y: 360, v: 7 },
+    { id: 'apidata-econ',        m: 'apidata', t: 'Economic & Macro',    x: 1130, y: 440, v: 8 },
+    { id: 'apidata-weather',     m: 'apidata', t: 'Weather & Climate',   x: 1290, y: 420, v: 6 },
+    { id: 'apidata-geo',         m: 'apidata', t: 'Geo & Countries',     x: 1225, y: 485, v: 6 },
+    { id: 'apidata-gov',         m: 'apidata', t: 'Government Open Data', x: 1110, y: 520, v: 7 },
+    { id: 'apidata-aggregators', m: 'apidata', t: 'Find More APIs',      x: 1320, y: 470, v: 7 },
   ],
   links: [
     // Business internal
@@ -206,5 +220,18 @@ export const baseGraph = {
     ['ex-pp','dbt-modeling'],
     ['sql-intro','dbt-normalize'],
     ['sql-etl','dbt-medallion'],
+    // APIs & Data Sources — internal
+    ['apidata-intro','apidata-practice'],['apidata-intro','apidata-ecom'],['apidata-practice','apidata-ecom'],
+    ['apidata-intro','apidata-stock'],['apidata-stock','apidata-crypto'],['apidata-stock','apidata-finance'],
+    ['apidata-crypto','apidata-finance'],['apidata-finance','apidata-econ'],
+    ['apidata-intro','apidata-weather'],['apidata-weather','apidata-geo'],['apidata-geo','apidata-gov'],
+    ['apidata-econ','apidata-gov'],['apidata-intro','apidata-aggregators'],['apidata-aggregators','apidata-practice'],
+    // APIs & Data Sources — cross-module (kept few)
+    ['py-api','apidata-intro'],
+    ['py-scrape','apidata-practice'],
+    ['py-pandas','apidata-practice'],
+    ['apidata-econ','bus-forecast'],
+    ['apidata-finance','bus-unit'],
+    ['apidata-stock','stat-regression'],
   ]
 };

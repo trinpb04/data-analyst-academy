@@ -46,6 +46,7 @@
   --mod-python:     #4b8bbe;  /* Python              */
   --mod-powerbi:    #f2c811;  /* DataViz & Power BI  */
   --mod-dbt:        #ff694b;  /* dbt / Analytics Eng */
+  --mod-apidata:    #06b6d4;  /* APIs & Data Sources */
 
   /* Soft tints of each module color, for chips & wells */
   --mod-business-soft:   #fdeaea;
@@ -55,6 +56,7 @@
   --mod-python-soft:     #eaf1f7;
   --mod-powerbi-soft:    #fdf6dc;
   --mod-dbt-soft:        #ffe7e0;
+  --mod-apidata-soft:    #d8f3fa;
 
   /* ---- Semantic status ------------------------------------ */
   --success:      #16a34a;

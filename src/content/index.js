@@ -6,6 +6,7 @@ import { sqlLessons } from './sql.js';
 import { powerbiLessons } from './powerbi.js';
 import { pythonLessons } from './python.js';
 import { dbtLessons } from './dbt.js';
+import { apidataLessons } from './apidata.js';
 
 export const ATLAS = {
   ...baseGraph,
@@ -17,5 +18,6 @@ export const ATLAS = {
     ...powerbiLessons,
     ...pythonLessons,
     ...dbtLessons,
+    ...apidataLessons,
   }
 };
