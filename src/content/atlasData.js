@@ -29,6 +29,7 @@ export const baseGraph = {
     { id: 'bus-experiment',m: 'business', t: 'Experimentation',          x: 200, y: 310, v: 7 },
     { id: 'bus-unit',      m: 'business', t: 'Unit Economics',           x: 90,  y: 130, v: 8 },
     { id: 'bus-forecast',  m: 'business', t: 'Forecasting & Variance',   x: 360, y: 110, v: 7 },
+    { id: 'bus-genai',     m: 'business', t: 'GenAI & ML Tools',         x: 280, y: 360, v: 8 },
     // Excel
     { id: 'ex-formulas', m: 'excel', t: 'Core Formulas',     x: 470, y: 60,  v: 8 },
     { id: 'ex-pivot',    m: 'excel', t: 'Pivot Tables',      x: 590, y: 75,  v: 8 },
@@ -121,7 +122,7 @@ export const baseGraph = {
     // Business internal
     ['bus-intro','bus-problem'],['bus-problem','bus-kpi'],['bus-kpi','bus-frame'],['bus-intro','bus-kpi'],['bus-frame','bus-cases'],['bus-problem','bus-story'],
     // Business internal (new)
-    ['bus-kpi','bus-northstar'],['bus-northstar','bus-frame'],['bus-frame','bus-experiment'],['bus-cases','bus-experiment'],['bus-kpi','bus-unit'],['bus-intro','bus-unit'],['bus-kpi','bus-forecast'],['bus-forecast','bus-cases'],
+    ['bus-kpi','bus-northstar'],['bus-northstar','bus-frame'],['bus-frame','bus-experiment'],['bus-cases','bus-experiment'],['bus-kpi','bus-unit'],['bus-intro','bus-unit'],['bus-kpi','bus-forecast'],['bus-forecast','bus-cases'],['bus-experiment','bus-genai'],
     // Excel internal
     ['ex-formulas','ex-pivot'],['ex-pivot','ex-pq'],['ex-pq','ex-pp'],['ex-formulas','ex-pq'],['ex-formulas','ex-adv'],['ex-pivot','ex-adv'],
     // Excel internal (new)
@@ -173,6 +174,7 @@ export const baseGraph = {
     ['py-numpy','py-eda'],
     // Cross-module links (expansion June 2026)
     ['bus-experiment','stat-abtest'],
+    ['bus-genai','py-ml'],
     ['bus-forecast','stat-infer'],
     ['bus-unit','bus-kpi'],
     ['sql-date','py-pandas'],
