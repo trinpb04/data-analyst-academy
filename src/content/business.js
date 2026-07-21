@@ -257,6 +257,7 @@ export const businessLessons = {
       { formula: 'Variance % = (Actual − Budget) / Budget × 100', caption: { vi: 'Tách variance thành Price variance (lệch giá) và Volume variance (lệch sản lượng) để biết nguyên nhân gốc.', en: 'Split the variance into Price variance and Volume variance to find the root cause.' } },
       { note: { vi: 'Giá trị thật của Analyst nằm ở phần "tại sao". "Doanh thu thấp hơn ngân sách 8%" là dữ liệu. "Thấp 8% vì Volume giảm 15% do mất 1 khách lớn, được bù một phần nhờ Price tăng 7%" mới là phân tích đáng tiền.', en: 'An analyst’s real value is in the “why”. “Revenue is 8% under budget” is data. “Down 8% because volume fell 15% from losing one major client, partly offset by a 7% price increase” is analysis worth paying for.' } },
     ],
+  },
   'bus-genai': {
     cluster: 'BUSINESS ACUMEN',
     summary: {
