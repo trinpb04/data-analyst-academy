@@ -257,5 +257,45 @@ export const businessLessons = {
       { formula: 'Variance % = (Actual − Budget) / Budget × 100', caption: { vi: 'Tách variance thành Price variance (lệch giá) và Volume variance (lệch sản lượng) để biết nguyên nhân gốc.', en: 'Split the variance into Price variance and Volume variance to find the root cause.' } },
       { note: { vi: 'Giá trị thật của Analyst nằm ở phần "tại sao". "Doanh thu thấp hơn ngân sách 8%" là dữ liệu. "Thấp 8% vì Volume giảm 15% do mất 1 khách lớn, được bù một phần nhờ Price tăng 7%" mới là phân tích đáng tiền.', en: 'An analyst’s real value is in the “why”. “Revenue is 8% under budget” is data. “Down 8% because volume fell 15% from losing one major client, partly offset by a 7% price increase” is analysis worth paying for.' } },
     ],
+  'bus-genai': {
+    cluster: 'BUSINESS ACUMEN',
+    summary: {
+      vi: 'Một số công cụ AI tạo sinh và Machine Learning hỗ trợ phân tích dữ liệu chuyên sâu.',
+      en: 'Several generative AI tools empower data analysts to extract deeper insights from data.',
+    },
+    body: [
+      { p: { vi: 'Các công cụ này cung cấp nhiều khả năng khác nhau, đáp ứng nhu cầu phân tích dữ liệu cụ thể:', en: 'These tools encompass diverse capabilities, catering to specific data analytics needs:' } },
+      { h: { vi: 'Nền tảng BI, Analytics & Machine Learning', en: 'BI, Analytics & Machine Learning Platforms' },
+        list: [
+          [{vi: 'RapidMiner', en: 'RapidMiner'}, {vi: 'Nền tảng Data Science toàn diện, tích hợp AI tạo sinh cho mô hình dự báo và tăng cường dữ liệu.', en: 'A comprehensive platform for data science and machine learning, incorporating generative AI capabilities for predictive modeling and data augmentation.'}],
+          [{vi: 'Tableau', en: 'Tableau'}, {vi: 'Công cụ trực quan hóa dữ liệu hàng đầu tích hợp AI tạo sinh để chuẩn bị dữ liệu và tạo insights bằng ngôn ngữ tự nhiên.', en: 'A leading data visualization tool that has integrated generative AI features to automate data preparation and generate insights with natural language queries.'}],
+          [{vi: 'IBM Cognos Analytics', en: 'IBM Cognos Analytics'}, {vi: 'Cung cấp tự động hóa và insights bằng AI, cho phép mô tả dữ liệu và kiểm định giả thuyết.', en: 'Offers AI-powered automation and insights, allowing users to describe data and test hypotheses.'}],
+          [{vi: 'Salesforce Einstein GPT', en: 'Salesforce Einstein GPT'}, {vi: 'Một LLM được tích hợp vào nền tảng Salesforce để hỗ trợ dịch vụ khách hàng, bán hàng và marketing.', en: 'A large language model (LLM) integrated into the Salesforce platform. It can generate data for customer service, sales, and marketing.'}],
+          [{vi: 'Các nền tảng Cloud (Google Cloud AutoML, IBM Watson Studio, Azure ML, Amazon SageMaker)', en: 'Cloud Platforms (Google Cloud AutoML, IBM Watson Studio, Azure ML, Amazon SageMaker)'}, {vi: 'Cung cấp nhiều mô hình tạo sinh cho phân loại văn bản, phân tích cảm xúc và phân loại hình ảnh.', en: 'Cloud-based machine learning platforms that include a variety of generative models for tasks such as text classification, sentiment analysis, and image classification.'}],
+        ]
+      },
+      { h: { vi: 'Mô hình Ngôn ngữ & Code', en: 'NLP & Code Interpreters' },
+        list: [
+          [{vi: "OpenAI's Code Interpreter", en: "OpenAI's Code Interpreter"}, {vi: 'Plugin ChatGPT (Advanced Data Analysis) cho phép tải lên dữ liệu/code để ChatGPT phân tích, vẽ biểu đồ và tóm tắt dữ liệu.', en: 'The ChatGPT Advanced Data Analysis enables users to upload data or code and prompt ChatGPT to perform analysis, create visualizations, and summarize data.'}],
+          [{vi: "Hugging Face's Transformers", en: "Hugging Face's Transformers"}, {vi: 'Thư viện NLP chứa nhiều mô hình tạo sinh như GPT-3 và BART để tạo văn bản, dịch ngôn ngữ.', en: 'An NLP library that includes a variety of generative models, such as GPT-3 and BART.'}],
+          [{vi: "DeepMind's Gato", en: "DeepMind's Gato"}, {vi: 'AI Agent đa dụng có thể thực hiện nhiều tác vụ, bao gồm phân tích dữ liệu, phân loại văn bản.', en: 'A general-purpose AI agent that can perform various tasks, including data analytics and text classification.'}],
+          [{vi: 'spaCy & Stanford CoreNLP', en: 'spaCy & Stanford CoreNLP'}, {vi: 'Công cụ xử lý ngôn ngữ tự nhiên (NLP) phổ biến bằng Python và Java.', en: 'Tools for natural language processing in Python and Java.'}],
+        ]
+      },
+      { h: { vi: 'Thị giác máy tính (Computer Vision) & GAN', en: 'Computer Vision & GANs' },
+        list: [
+          [{vi: "Google AI's Imagen & OpenAI's DALL-E 2", en: "Google AI's Imagen & OpenAI's DALL-E 2"}, {vi: 'Mô hình Text-to-image diffusion tạo ảnh thực tế từ mô tả văn bản, dùng cho bài toán phân loại hình ảnh.', en: 'Text-to-image diffusion models that can generate realistic and creative images from text descriptions.'}],
+          [{vi: 'StyleGAN, CycleGAN, BigGAN', en: 'StyleGAN, CycleGAN, BigGAN'}, {vi: 'Các mạng GAN giúp tạo ảnh khuôn mặt độ phân giải cao và chuyển đổi phong cách ảnh.', en: 'Generative adversarial networks (GANs) that generate realistic images, high-resolution images, and translate styles.'}],
+        ]
+      },
+      { h: { vi: 'Explainable AI, Data Prep & ML Tools', en: 'Explainable AI, Data Prep & ML Tools' },
+        list: [
+          [{vi: 'Lime, SHAP & Captum', en: 'Lime, SHAP & Captum'}, {vi: 'Các thư viện công cụ giúp giải thích quyết định của mô hình Machine Learning.', en: 'Tools and libraries that explain the decisions made by machine learning models.'}],
+          [{vi: 'DataWrangler & OpenRefine', en: 'DataWrangler & OpenRefine'}, {vi: 'Sử dụng NLP và các thao tác (lọc, nhóm) để làm sạch, biến đổi và chuẩn hóa dữ liệu.', en: 'Tools that clean, normalize, and transform data using NLP and various operations.'}],
+          [{vi: 'Featuretools & H2O Driverless AI', en: 'Featuretools & H2O Driverless AI'}, {vi: 'Tự động tạo đặc trưng (features) mới và chọn lọc đặc trưng bằng Machine Learning.', en: 'Tools that automatically generate and select new features from existing data.'}],
+          [{vi: 'TPOT, Prophet, LightGBM, XGBoost', en: 'TPOT, Prophet, LightGBM, XGBoost'}, {vi: 'Tối ưu hóa pipeline (TPOT), dự báo chuỗi thời gian (Prophet) và cây gradient-boosting (LightGBM, XGBoost).', en: 'Optimize machine learning pipelines, forecast time series data, and build gradient-boosting trees.'}],
+        ]
+      }
+    ],
   },
 };
